@@ -18,6 +18,10 @@ export default {
 			}
 		},
 		extend: {
+			fontFamily: {
+				'poppins': ['Poppins', 'sans-serif'],
+				'open-sans': ['Open Sans', 'sans-serif'],
+			},
 			colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
@@ -56,12 +60,12 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
-				// Custom travel theme colors
-				'warm-sand': 'hsl(var(--warm-sand))',
-				'sunset-orange': 'hsl(var(--sunset-orange))',
-				'mountain-blue': 'hsl(var(--mountain-blue))',
-				'forest-green': 'hsl(var(--forest-green))',
-				'heritage-gold': 'hsl(var(--heritage-gold))',
+				// Premium theme colors
+				'midnight-blue': 'hsl(var(--midnight-blue))',
+				'sky-teal': 'hsl(var(--sky-teal))',
+				'soft-cream': 'hsl(var(--soft-cream))',
+				'coral-orange': 'hsl(var(--coral-orange))',
+				'charcoal': 'hsl(var(--charcoal))',
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
 					foreground: 'hsl(var(--sidebar-foreground))',
@@ -85,10 +89,12 @@ export default {
 			},
 			boxShadow: {
 				'warm': 'var(--shadow-warm)',
-				'card': 'var(--shadow-card)'
+				'card': 'var(--shadow-card)',
+				'hover': 'var(--shadow-hover)'
 			},
 			transitionProperty: {
-				'smooth': 'var(--transition-smooth)'
+				'smooth': 'var(--transition-smooth)',
+				'bounce': 'var(--transition-bounce)'
 			},
 			keyframes: {
 				'accordion-down': {

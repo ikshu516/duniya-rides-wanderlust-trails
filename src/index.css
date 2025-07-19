@@ -2,73 +2,80 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Duniya Rides Design System - Indian Travel Theme
+/* Duniya Rides Premium Design System
 All colors MUST be HSL.
 */
 
 @layer base {
   :root {
-    /* Background & Base */
-    --background: 30 25% 98%;
-    --foreground: 25 20% 15%;
+    /* Premium Color Palette */
+    --background: 45 20% 97%; /* Soft Cream #F9F9F6 */
+    --foreground: 216 100% 10%; /* Dark Blue-Black #101820 */
 
     /* Card Components */
     --card: 0 0% 100%;
-    --card-foreground: 25 20% 15%;
+    --card-foreground: 216 100% 10%;
 
     /* Popover Components */
     --popover: 0 0% 100%;
-    --popover-foreground: 25 20% 15%;
+    --popover-foreground: 216 100% 10%;
 
-    /* Primary - Saffron Orange */
-    --primary: 35 85% 55%;
+    /* Primary - Sky Teal */
+    --primary: 177 100% 35%; /* #00B2A9 */
     --primary-foreground: 0 0% 100%;
-    --primary-light: 35 85% 70%;
-    --primary-dark: 35 85% 40%;
+    --primary-light: 177 100% 50%;
+    --primary-dark: 177 100% 25%;
 
-    /* Secondary - Indian Green */
-    --secondary: 135 60% 45%;
+    /* Secondary - Midnight Blue */
+    --secondary: 216 69% 13%; /* #0F1C2E */
     --secondary-foreground: 0 0% 100%;
-    --secondary-light: 135 60% 65%;
+    --secondary-light: 216 69% 20%;
 
-    /* Accent - Sky Blue */
-    --accent: 210 70% 60%;
+    /* Accent - Coral Orange */
+    --accent: 10 100% 67%; /* #FF6F59 */
     --accent-foreground: 0 0% 100%;
-    --accent-light: 210 70% 80%;
+    --accent-light: 10 100% 80%;
+
+    /* Text Colors */
+    --text-primary: 216 100% 10%; /* #101820 */
+    --text-secondary: 0 0% 20%; /* #333333 */
+    --text-muted: 0 0% 45%;
 
     /* Muted Colors */
-    --muted: 30 15% 95%;
-    --muted-foreground: 25 10% 45%;
+    --muted: 45 15% 94%;
+    --muted-foreground: 0 0% 45%;
 
     /* Destructive */
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
 
     /* Borders & Inputs */
-    --border: 30 20% 85%;
-    --input: 30 20% 90%;
-    --ring: 35 85% 55%;
+    --border: 45 15% 88%;
+    --input: 45 15% 92%;
+    --ring: 177 100% 35%;
 
-    /* Custom Travel Theme Colors */
-    --warm-sand: 45 35% 85%;
-    --sunset-orange: 20 90% 65%;
-    --mountain-blue: 220 60% 50%;
-    --forest-green: 140 50% 40%;
-    --heritage-gold: 45 80% 60%;
+    /* Premium Theme Colors */
+    --midnight-blue: 216 69% 13%;
+    --sky-teal: 177 100% 35%;
+    --soft-cream: 45 20% 97%;
+    --coral-orange: 10 100% 67%;
+    --charcoal: 0 0% 20%;
 
     /* Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--sunset-orange)));
-    --gradient-hero: linear-gradient(135deg, hsl(var(--primary) / 0.9), hsl(var(--secondary) / 0.9));
-    --gradient-card: linear-gradient(145deg, hsl(var(--card)), hsl(var(--warm-sand)));
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)));
+    --gradient-hero: linear-gradient(135deg, hsl(var(--secondary) / 0.9), hsl(var(--primary) / 0.8));
+    --gradient-card: linear-gradient(145deg, hsl(var(--card)), hsl(var(--background)));
 
     /* Shadows */
-    --shadow-warm: 0 10px 25px hsl(var(--primary) / 0.15);
-    --shadow-card: 0 4px 15px hsl(var(--foreground) / 0.1);
+    --shadow-warm: 0 10px 30px hsl(var(--primary) / 0.15);
+    --shadow-card: 0 8px 25px hsl(var(--secondary) / 0.1);
+    --shadow-hover: 0 15px 35px hsl(var(--primary) / 0.25);
     
     /* Transitions */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
   }
 
   .dark {
@@ -154,7 +161,11 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-open-sans;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-poppins font-semibold;
   }
 
   html {
