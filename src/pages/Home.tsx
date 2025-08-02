@@ -143,21 +143,30 @@ export default function Home() {
         </div>
 
         {/* Hero Content */}
-        <div className="relative z-10 text-center text-white max-w-4xl mx-auto px-4">
-          <h1 className="text-6xl md:text-7xl font-bold mb-6 leading-tight">
-            Your Personalized Indian Journey Starts Here
+        <div className="relative z-10 text-center text-white max-w-5xl mx-auto px-4">
+          <div className="mb-6">
+            <span className="inline-block text-lg md:text-xl font-medium bg-primary/20 backdrop-blur-sm px-6 py-2 rounded-full border border-white/20 mb-6">
+              🇮🇳 India, your way. Let the ride begin.
+            </span>
+          </div>
+          <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+            Chalo, let's explore <br />
+            <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+              Incredible India
+            </span>
           </h1>
-          <p className="text-xl md:text-2xl mb-8 opacity-90">
-            Trusted by 10,000+ travellers. Custom itineraries, real support, no stress.
+          <p className="text-xl md:text-2xl mb-8 opacity-90 font-lora">
+            From chai on the ghats to treks in the clouds — we craft personalized journeys across India's hidden gems and iconic destinations.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button asChild size="lg" className="bg-primary hover:bg-accent text-white px-8 py-4 text-lg rounded-full">
-              <Link to="/plan-trip">Plan My Trip</Link>
+            <Button asChild size="lg" className="bg-gradient-saffron hover:shadow-glow text-white px-8 py-4 text-lg rounded-full font-semibold transition-all duration-300">
+              <Link to="/plan-trip">Plan My Ride 🛺</Link>
             </Button>
-            <Button asChild variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-secondary px-8 py-4 text-lg rounded-full">
-              <Link to="/destinations">Explore Destinations</Link>
+            <Button asChild variant="outline" size="lg" className="border-white/50 bg-white/10 backdrop-blur-sm text-white hover:bg-white hover:text-secondary px-8 py-4 text-lg rounded-full font-semibold">
+              <Link to="/destinations">Explore India</Link>
             </Button>
           </div>
+          <p className="mt-6 text-sm opacity-75">✨ Trusted by 10,000+ happy travelers</p>
         </div>
 
         {/* Scroll indicator */}
@@ -172,11 +181,14 @@ export default function Home() {
       <section className="py-20 bg-background">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-foreground mb-6">
-              Popular Destinations
+            <span className="inline-block text-sm font-medium bg-primary/10 text-primary px-4 py-2 rounded-full mb-4">
+              🗺️ WHERE TO NEXT?
+            </span>
+            <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
+              India's Most Loved Destinations
             </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Discover India's most beloved destinations, each offering unique experiences and unforgettable memories
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto font-lora">
+              Every corner tells a story. From royal palaces to serene backwaters, discover where your Indian adventure begins.
             </p>
           </div>
           
@@ -212,11 +224,14 @@ export default function Home() {
       <section className="py-20 bg-muted">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-foreground mb-6">
-              Why Choose Duniya Rides?
+            <span className="inline-block text-sm font-medium bg-secondary/10 text-secondary px-4 py-2 rounded-full mb-4">
+              🏆 INDIA'S MOST TRUSTED
+            </span>
+            <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
+              Why Duniya Rides?
             </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              We're committed to making your Indian adventure seamless, memorable, and worry-free
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto font-lora">
+              More than travel. It's your story with India — crafted with love, guided with expertise.
             </p>
           </div>
           
@@ -235,16 +250,21 @@ export default function Home() {
       </section>
 
       {/* Quick Trip Planning Form */}
-      <section className="py-20 bg-muted">
+      <section className="py-20 bg-gradient-to-br from-secondary via-secondary to-primary/20 text-white">
         <div className="max-w-4xl mx-auto px-4">
-          <Card className="shadow-card">
+          <Card className="shadow-glow bg-white/10 backdrop-blur-lg border-white/20">
             <CardContent className="p-8">
-              <h2 className="text-3xl font-bold text-center text-foreground mb-8">
-                Plan Your Perfect Trip
-              </h2>
-              <p className="text-center text-muted-foreground mb-8">
-                Share your details and let our experts craft your personalized Indian journey
-              </p>
+              <div className="text-center mb-8">
+                <span className="inline-block text-sm font-medium bg-white/20 px-4 py-2 rounded-full mb-4">
+                  🚀 START YOUR JOURNEY
+                </span>
+                <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                  Chalo, Plan Your Perfect Ride!
+                </h2>
+                <p className="text-lg opacity-90 font-lora">
+                  Tell us your travel dreams, and we'll make them reality. Planning India made easy.
+                </p>
+              </div>
               <form onSubmit={handleQuickPlanSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   <div className="space-y-2">
@@ -303,11 +323,14 @@ export default function Home() {
                 </div>
                 <Button 
                   type="submit" 
-                  className="w-full bg-primary hover:bg-accent text-white py-4 text-lg rounded-full"
+                  className="w-full bg-gradient-saffron hover:shadow-glow text-white py-4 text-lg rounded-full font-semibold transition-all duration-300"
                   disabled={isSubmitting}
                 >
-                  {isSubmitting ? "Submitting..." : "Get My Trip Plan"}
+                  {isSubmitting ? "✨ Creating Magic..." : "🎯 Get My Personalized Trip Plan"}
                 </Button>
+                <p className="text-center text-sm opacity-75 mt-3">
+                  💬 We'll WhatsApp you within 2 hours with exciting options!
+                </p>
               </form>
             </CardContent>
           </Card>

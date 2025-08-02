@@ -97,11 +97,16 @@ export default function PlanMyTrip() {
         <div className="max-w-4xl mx-auto px-4">
           {/* Header */}
           <div className="text-center mb-12">
-            <h1 className="text-4xl font-bold text-foreground mb-4">
-              Plan Your Perfect Trip to India
+            <div className="mb-6">
+              <span className="inline-block text-sm font-medium bg-primary/10 text-primary px-4 py-2 rounded-full mb-4">
+                🗺️ CRAFT YOUR JOURNEY
+              </span>
+            </div>
+            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
+              Chalo, Plan Your Indian Adventure!
             </h1>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Share your travel dreams with us and we'll craft a personalized itinerary that matches your style, budget, and interests.
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto font-lora">
+              Tell us your travel dreams, preferences, and bucket list. We'll weave them into an unforgettable Indian story — just for you.
             </p>
           </div>
 
@@ -182,12 +187,14 @@ export default function PlanMyTrip() {
                           <SelectValue placeholder="Select your travel style" />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="adventure">Adventure</SelectItem>
-                          <SelectItem value="luxury">Luxury</SelectItem>
-                          <SelectItem value="culture">Culture</SelectItem>
-                          <SelectItem value="spiritual">Spiritual</SelectItem>
-                          <SelectItem value="family">Family</SelectItem>
-                          <SelectItem value="romantic">Romantic</SelectItem>
+                          <SelectItem value="adventure">🏔️ Adventure & Thrills</SelectItem>
+                          <SelectItem value="luxury">✨ Luxury & Comfort</SelectItem>
+                          <SelectItem value="culture">🎭 Cultural Immersion</SelectItem>
+                          <SelectItem value="spiritual">🕉️ Spiritual Journey</SelectItem>
+                          <SelectItem value="family">👨‍👩‍👧‍👦 Family Fun</SelectItem>
+                          <SelectItem value="romantic">💕 Romantic Getaway</SelectItem>
+                          <SelectItem value="offbeat">🌟 Offbeat & Hidden Gems</SelectItem>
+                          <SelectItem value="food">🍛 Food & Culinary Tour</SelectItem>
                         </SelectContent>
                       </Select>
                     </div>
@@ -205,16 +212,16 @@ export default function PlanMyTrip() {
                 </div>
 
                 <div className="pt-6">
-                  <Button 
-                    type="submit" 
-                    className="w-full bg-gradient-primary hover:shadow-warm text-lg py-3"
-                    disabled={isSubmitting}
-                  >
-                    {isSubmitting ? "Submitting..." : "Submit Trip Request"}
-                  </Button>
-                  <p className="text-sm text-muted-foreground text-center mt-3">
-                    We'll respond within 24 hours with a personalized itinerary
-                  </p>
+                <Button 
+                  type="submit" 
+                  className="w-full bg-gradient-saffron hover:shadow-glow text-lg py-4 rounded-full font-semibold transition-all duration-300"
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? "✨ Creating Your Dream Trip..." : "🚀 Let's Plan My Indian Adventure!"}
+                </Button>
+                <p className="text-sm text-muted-foreground text-center mt-3 font-lora">
+                  💫 Our travel experts will craft your personalized itinerary within 24 hours
+                </p>
                 </div>
               </form>
             </CardContent>

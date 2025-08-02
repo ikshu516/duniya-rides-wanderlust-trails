@@ -17,11 +17,13 @@ export default {
 				'2xl': '1400px'
 			}
 		},
-		extend: {
-			fontFamily: {
-				'poppins': ['Poppins', 'sans-serif'],
-				'open-sans': ['Open Sans', 'sans-serif'],
-			},
+    extend: {
+      fontFamily: {
+        'poppins': ['Poppins', 'sans-serif'],
+        'lora': ['Lora', 'serif'],
+        sans: ['Poppins', 'sans-serif'],
+        serif: ['Lora', 'serif'],
+      },
 			colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
