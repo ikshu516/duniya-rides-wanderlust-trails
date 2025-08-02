@@ -158,6 +158,42 @@ export default function Home() {
           <p className="text-xl md:text-2xl mb-8 opacity-90 font-lora">
             From chai on the ghats to treks in the clouds — we craft personalized journeys across India's hidden gems and iconic destinations.
           </p>
+          
+          {/* Quick Search Widget - Inspired by TripFactory */}
+          <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-6 mb-8 border border-white/20 max-w-5xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+              <div className="text-left">
+                <label className="block text-sm font-medium text-white/80 mb-2">Destination</label>
+                <input 
+                  type="text" 
+                  placeholder="Where to?" 
+                  className="w-full bg-white/20 backdrop-blur-sm border border-white/30 rounded-lg px-4 py-3 text-white placeholder-white/60 focus:ring-2 focus:ring-primary focus:border-transparent"
+                />
+              </div>
+              <div className="text-left">
+                <label className="block text-sm font-medium text-white/80 mb-2">Travel Date</label>
+                <input 
+                  type="date" 
+                  className="w-full bg-white/20 backdrop-blur-sm border border-white/30 rounded-lg px-4 py-3 text-white focus:ring-2 focus:ring-primary focus:border-transparent"
+                />
+              </div>
+              <div className="text-left">
+                <label className="block text-sm font-medium text-white/80 mb-2">Duration</label>
+                <select className="w-full bg-white/20 backdrop-blur-sm border border-white/30 rounded-lg px-4 py-3 text-white focus:ring-2 focus:ring-primary focus:border-transparent">
+                  <option value="">Days</option>
+                  <option value="3-5">3-5 Days</option>
+                  <option value="6-10">6-10 Days</option>
+                  <option value="11-15">11-15 Days</option>
+                </select>
+              </div>
+              <div className="flex items-end">
+                <Button asChild className="w-full bg-gradient-saffron hover:shadow-glow text-white font-semibold py-3 rounded-lg transition-all duration-300">
+                  <Link to="/plan-trip">🔍 Search Trips</Link>
+                </Button>
+              </div>
+            </div>
+          </div>
+
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button asChild size="lg" className="bg-gradient-saffron hover:shadow-glow text-white px-8 py-4 text-lg rounded-full font-semibold transition-all duration-300">
               <Link to="/plan-trip">Plan My Ride 🛺</Link>
