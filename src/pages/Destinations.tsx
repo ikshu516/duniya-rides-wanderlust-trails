@@ -10,7 +10,7 @@ const destinations = [
     name: "Kerala",
     subtitle: "God's Own Country",
     description: "Experience the serene backwaters, lush tea plantations, and spice gardens of Kerala.",
-    image: "photo-1578662996442-48f60103fc96",
+    image: "photo-1578662996442-48f60103fc96", // Kerala backwaters with houseboat
     duration: "5-10 days",
     rating: 4.8,
     highlights: ["Backwaters", "Tea Gardens", "Spice Plantations", "Ayurveda"],
@@ -21,7 +21,7 @@ const destinations = [
     name: "Rajasthan",
     subtitle: "Land of Kings",
     description: "Discover magnificent palaces, desert safaris, and vibrant culture in the royal state.",
-    image: "photo-1477316224142-5d3827d8e90f",
+    image: "photo-1482881497185-d4a9ddbe4151", // Desert sand dunes - perfect for Rajasthan
     duration: "7-12 days",
     rating: 4.9,
     highlights: ["Palaces", "Desert Safari", "Forts", "Culture"],
@@ -32,7 +32,7 @@ const destinations = [
     name: "Goa",
     subtitle: "Pearl of the Orient",
     description: "Relax on pristine beaches, explore Portuguese heritage, and enjoy vibrant nightlife.",
-    image: "photo-1512343879784-a960bf40e7f2",
+    image: "photo-1512343879784-a960bf40e7f2", // Goa beaches
     duration: "3-7 days",
     rating: 4.6,
     highlights: ["Beaches", "Nightlife", "Churches", "Seafood"],
@@ -43,7 +43,7 @@ const destinations = [
     name: "Kashmir",
     subtitle: "Paradise on Earth",
     description: "Marvel at snow-capped mountains, pristine lakes, and beautiful houseboats.",
-    image: "photo-1506905925346-21bda4d32df4",
+    image: "photo-1506905925346-21bda4d32df4", // Kashmir Dal Lake with houseboats
     duration: "5-8 days",
     rating: 4.7,
     highlights: ["Dal Lake", "Houseboats", "Gardens", "Skiing"],
@@ -54,7 +54,7 @@ const destinations = [
     name: "Himachal Pradesh",
     subtitle: "Land of Snow",
     description: "Adventure in the Himalayas with trekking, skiing, and mountain views.",
-    image: "photo-1469041797191-50ace28483c3",
+    image: "photo-1469474968028-56623f02e42e", // Mountain landscape hit by sun rays - perfect for Himachal
     duration: "5-10 days",
     rating: 4.8,
     highlights: ["Trekking", "Adventure Sports", "Hill Stations", "Temples"],
@@ -65,7 +65,7 @@ const destinations = [
     name: "Uttarakhand",
     subtitle: "Devbhoomi",
     description: "Spiritual journey to sacred temples and pristine mountain landscapes.",
-    image: "photo-1482938289607-e9573fc25ebb",
+    image: "photo-1482938289607-e9573fc25ebb", // Spiritual/temple imagery
     duration: "4-8 days",
     rating: 4.7,
     highlights: ["Char Dham", "Rishikesh", "National Parks", "Yoga"],
@@ -76,7 +76,7 @@ const destinations = [
     name: "Tamil Nadu",
     subtitle: "Land of Temples",
     description: "Explore ancient temples, classical dance, and rich cultural heritage.",
-    image: "photo-1500673922987-e212871fec22",
+    image: "photo-1466442929976-97f336a657be", // Mosque/temple buildings - perfect for Tamil Nadu temples
     duration: "6-10 days",
     rating: 4.6,
     highlights: ["Temples", "Classical Arts", "Hill Stations", "Cuisine"],
@@ -87,7 +87,7 @@ const destinations = [
     name: "Ladakh",
     subtitle: "Little Tibet",
     description: "High-altitude desert with Buddhist monasteries and stunning landscapes.",
-    image: "photo-1469041797191-50ace28483c3",
+    image: "photo-1469041797191-50ace28483c3", // Camels on field - represents high altitude desert landscape
     duration: "6-10 days",
     rating: 4.9,
     highlights: ["Monasteries", "High Altitude Lakes", "Adventure", "Culture"],
