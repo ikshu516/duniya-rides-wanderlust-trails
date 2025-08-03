@@ -272,7 +272,7 @@ export default function DestinationDetail() {
                   <div className="border-t pt-4">
                     <Button asChild className="w-full bg-gradient-primary mb-3">
                       <Link to="/plan-my-trip">
-                        Plan Custom Trip <ArrowRight className="ml-2 h-4 w-4" />
+                        Book Your Trip <ArrowRight className="ml-2 h-4 w-4" />
                       </Link>
                     </Button>
                     <Button asChild variant="outline" className="w-full">
