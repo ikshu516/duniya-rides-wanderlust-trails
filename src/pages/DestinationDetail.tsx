@@ -26,33 +26,6 @@ const destinationData: Record<string, any> = {
       "photo-1506905925346-21bda4d32df4",
       "photo-1500673922987-e212871fec22"
     ],
-    itinerary: [
-      {
-        day: 1,
-        title: "Arrival in Kochi",
-        activities: ["Airport pickup", "Fort Kochi sightseeing", "Chinese fishing nets", "Overnight in heritage hotel"]
-      },
-      {
-        day: 2,
-        title: "Kochi to Munnar",
-        activities: ["Drive to Munnar (4 hours)", "Tea plantation visit", "Mattupetty Dam", "Evening at leisure"]
-      },
-      {
-        day: 3,
-        title: "Munnar Exploration",
-        activities: ["Eravikulam National Park", "Tea Museum", "Spice gardens", "Echo Point visit"]
-      },
-      {
-        day: 4,
-        title: "Munnar to Alleppey",
-        activities: ["Drive to Alleppey", "Houseboat check-in", "Backwater cruise", "Traditional Kerala dinner"]
-      },
-      {
-        day: 5,
-        title: "Departure",
-        activities: ["Morning backwater cruise", "Check-out", "Transfer to Kochi airport", "Departure"]
-      }
-    ],
     activities: [
       "Houseboat cruising",
       "Ayurvedic spa treatments",
@@ -82,28 +55,6 @@ const destinationData: Record<string, any> = {
       "photo-1469041797191-50ace28483c3",
       "photo-1477316224142-5d3827d8e90f"
     ],
-    itinerary: [
-      {
-        day: 1,
-        title: "Arrival in Goa",
-        activities: ["Airport pickup", "Check-in to beach resort", "Calangute Beach", "Welcome dinner"]
-      },
-      {
-        day: 2,
-        title: "North Goa Tour",
-        activities: ["Baga Beach", "Fort Aguada", "Anjuna Beach", "Saturday Night Market"]
-      },
-      {
-        day: 3,
-        title: "Old Goa Heritage",
-        activities: ["Basilica of Bom Jesus", "Se Cathedral", "Spice plantation tour", "River cruise"]
-      },
-      {
-        day: 4,
-        title: "Departure",
-        activities: ["Beach relaxation", "Shopping", "Airport transfer", "Departure"]
-      }
-    ],
     activities: [
       "Beach relaxation",
       "Water sports",
@@ -111,6 +62,151 @@ const destinationData: Record<string, any> = {
       "Nightlife",
       "Spice plantation visits",
       "River cruises"
+    ]
+  },
+  rajasthan: {
+    name: "Rajasthan",
+    subtitle: "Land of Kings",
+    heroImage: "photo-1477587458883-47145ed94245",
+    rating: 4.9,
+    duration: "7-14 days",
+    bestTime: "October to March",
+    overview: "Rajasthan, the 'Land of Kings', is India's largest state known for its magnificent palaces, majestic forts, colorful festivals, and rich cultural heritage. Experience royal hospitality, desert landscapes, and architectural marvels.",
+    highlights: [
+      "Explore the Pink City of Jaipur and its magnificent palaces",
+      "Experience camel safaris in the Thar Desert",
+      "Visit the romantic city of lakes, Udaipur",
+      "Discover the golden city of Jaisalmer",
+      "Witness vibrant folk performances and festivals"
+    ],
+    gallery: [
+      "photo-1477587458883-47145ed94245",
+      "photo-1564507592333-c60657eea523",
+      "photo-1609166214565-db57b7a41dc9"
+    ],
+    activities: [
+      "Palace tours",
+      "Camel safaris",
+      "Desert camping",
+      "Cultural shows",
+      "Heritage walks",
+      "Royal dining experiences"
+    ]
+  },
+  himachal: {
+    name: "Himachal Pradesh",
+    subtitle: "Land of Gods",
+    heroImage: "photo-1506905925346-21bda4d32df4",
+    rating: 4.7,
+    duration: "5-12 days",
+    bestTime: "March to June, September to December",
+    overview: "Himachal Pradesh, nestled in the Western Himalayas, offers stunning mountain landscapes, hill stations, adventure activities, and spiritual retreats. Perfect for nature lovers and adventure seekers.",
+    highlights: [
+      "Experience the charm of Shimla and Manali",
+      "Trek through scenic valleys and mountain passes",
+      "Enjoy adventure sports like paragliding and river rafting",
+      "Visit ancient temples and monasteries",
+      "Witness snow-capped peaks and pristine lakes"
+    ],
+    gallery: [
+      "photo-1506905925346-21bda4d32df4",
+      "photo-1544735716-392fe2489ffa",
+      "photo-1571019613454-1cb2f99b2d8b"
+    ],
+    activities: [
+      "Trekking",
+      "Paragliding",
+      "River rafting",
+      "Temple visits",
+      "Hill station tours",
+      "Adventure sports"
+    ]
+  },
+  tamilnadu: {
+    name: "Tamil Nadu",
+    subtitle: "Land of Temples",
+    heroImage: "photo-1582550945154-019d117f7bb4",
+    rating: 4.5,
+    duration: "6-10 days",
+    bestTime: "November to March",
+    overview: "Tamil Nadu is renowned for its magnificent Dravidian architecture, ancient temples, classical dance forms, and rich cultural heritage. Explore the spiritual and cultural heart of South India.",
+    highlights: [
+      "Marvel at the architectural wonders of Madurai and Thanjavur",
+      "Explore the French colonial charm of Pondicherry",
+      "Visit the hill station of Ooty and its tea gardens",
+      "Experience classical Tamil culture and dance",
+      "Discover ancient rock-cut temples in Mahabalipuram"
+    ],
+    gallery: [
+      "photo-1582550945154-019d117f7bb4",
+      "photo-1578632767115-351597cf2477",
+      "photo-1544967882-19d4b597a4fc"
+    ],
+    activities: [
+      "Temple visits",
+      "Cultural tours",
+      "Heritage walks",
+      "Classical performances",
+      "Hill station exploration",
+      "Beach relaxation"
+    ]
+  },
+  uttarakhand: {
+    name: "Uttarakhand",
+    subtitle: "Devbhoomi - Land of Gods",
+    heroImage: "photo-1571115764595-644a1f56a55c",
+    rating: 4.8,
+    duration: "5-10 days",
+    bestTime: "March to June, September to November",
+    overview: "Uttarakhand, known as 'Devbhoomi', is blessed with the mighty Himalayas, sacred rivers, ancient temples, and diverse wildlife. A perfect destination for spiritual seekers and nature enthusiasts.",
+    highlights: [
+      "Visit the holy cities of Haridwar and Rishikesh",
+      "Explore the scenic hill stations of Nainital and Mussoorie",
+      "Trek in the Valley of Flowers and other Himalayan trails",
+      "Experience adventure sports and yoga retreats",
+      "Witness the spiritual Ganga Aarti ceremonies"
+    ],
+    gallery: [
+      "photo-1571115764595-644a1f56a55c",
+      "photo-1626621341517-bbf3d9990a23",
+      "photo-1544735716-392fe2489ffa"
+    ],
+    activities: [
+      "Spiritual tours",
+      "Trekking",
+      "Yoga retreats",
+      "Wildlife safaris",
+      "Adventure sports",
+      "Temple visits"
+    ]
+  },
+  maharashtra: {
+    name: "Maharashtra",
+    subtitle: "Gateway of India",
+    heroImage: "photo-1567157577867-05ccb1388e66",
+    rating: 4.4,
+    duration: "4-8 days",
+    bestTime: "October to March",
+    overview: "Maharashtra offers a perfect blend of cosmopolitan cities, historical sites, hill stations, and beaches. From the bustling streets of Mumbai to the caves of Ajanta and Ellora, experience diverse attractions.",
+    highlights: [
+      "Explore the vibrant city of Mumbai and its landmarks",
+      "Visit the UNESCO World Heritage sites of Ajanta and Ellora",
+      "Enjoy the hill stations of Lonavala and Mahabaleshwar",
+      "Discover the historical forts and palaces",
+      "Experience Bollywood culture and street food"
+    ],
+    gallery: [
+      "photo-1567157577867-05ccb1388e66",
+      "photo-1595658658481-d53d3f999875",
+      "photo-1570168007204-dfb528c6958f"
+    ],
+    activities: [
+      "City tours",
+      "Heritage exploration",
+      "Hill station visits",
+      "Cultural experiences",
+      "Food tours",
+      "Bollywood tours"
     ]
   }
 };
@@ -206,32 +302,6 @@ export default function DestinationDetail() {
               </div>
             </section>
 
-            {/* Itinerary */}
-            <section>
-              <h2 className="text-3xl font-bold text-foreground mb-6">Sample Itinerary</h2>
-              <div className="space-y-6">
-                {data.itinerary.map((day: any, index: number) => (
-                  <Card key={index}>
-                    <CardHeader>
-                      <CardTitle className="flex items-center space-x-2">
-                        <Badge variant="outline">Day {day.day}</Badge>
-                        <span>{day.title}</span>
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <ul className="space-y-2">
-                        {day.activities.map((activity: string, actIndex: number) => (
-                          <li key={actIndex} className="flex items-start space-x-3">
-                            <div className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0" />
-                            <span className="text-muted-foreground">{activity}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-            </section>
 
             {/* Activities */}
             <section>
