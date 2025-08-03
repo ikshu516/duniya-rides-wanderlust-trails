@@ -160,24 +160,40 @@ export default function PlanMyTrip() {
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div className="space-y-2">
-                        <Label htmlFor="numberOfDays">Number of Days</Label>
-                        <Input id="numberOfDays" name="numberOfDays" type="number" placeholder="7" />
-                      </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="budgetRange">Budget Range (per person) *</Label>
-                        <Select name="budgetRange" required>
+                        <Label htmlFor="numberOfTravelers">Number of Travelers *</Label>
+                        <Select name="numberOfTravelers" required>
                           <SelectTrigger>
-                            <SelectValue placeholder="Select budget range" />
+                            <SelectValue placeholder="Select travelers" />
                           </SelectTrigger>
                           <SelectContent>
-                            <SelectItem value="under-20k">Under ₹20,000</SelectItem>
-                            <SelectItem value="20k-40k">₹20,000 - ₹40,000</SelectItem>
-                            <SelectItem value="40k-60k">₹40,000 - ₹60,000</SelectItem>
-                            <SelectItem value="60k-100k">₹60,000 - ₹1,00,000</SelectItem>
-                            <SelectItem value="above-100k">Above ₹1,00,000</SelectItem>
+                            <SelectItem value="1">1 Person</SelectItem>
+                            <SelectItem value="2">2 People</SelectItem>
+                            <SelectItem value="3-4">3-4 People</SelectItem>
+                            <SelectItem value="5-8">5-8 People</SelectItem>
+                            <SelectItem value="9+">9+ People (Group)</SelectItem>
                           </SelectContent>
                         </Select>
                       </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="numberOfDays">Number of Days</Label>
+                        <Input id="numberOfDays" name="numberOfDays" type="number" placeholder="7" min="1" max="30" />
+                      </div>
+                    </div>
+
+                    <div className="space-y-2">
+                      <Label htmlFor="budgetRange">Budget Range (per person) *</Label>
+                      <Select name="budgetRange" required>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select budget range" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="under-20k">Under ₹20,000</SelectItem>
+                          <SelectItem value="20k-40k">₹20,000 - ₹40,000</SelectItem>
+                          <SelectItem value="40k-60k">₹40,000 - ₹60,000</SelectItem>
+                          <SelectItem value="60k-100k">₹60,000 - ₹1,00,000</SelectItem>
+                          <SelectItem value="above-100k">Above ₹1,00,000</SelectItem>
+                        </SelectContent>
+                      </Select>
                     </div>
 
                     <div className="space-y-2">
