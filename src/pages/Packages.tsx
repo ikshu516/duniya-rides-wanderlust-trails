@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -12,7 +13,7 @@ const packages = [
     duration: "3 Days / 2 Nights",
     price: "₹15,999",
     originalPrice: "₹19,999",
-    image: "photo-1578662996442-48f60103fc96",
+    image: "/images/gallery/kerala-backwaters.jpg",
     rating: 4.8,
     reviews: 124,
     groupSize: "2-8 people",
@@ -27,7 +28,7 @@ const packages = [
     duration: "7 Days / 6 Nights",
     price: "₹35,999",
     originalPrice: "₹42,999",
-    image: "photo-1477316224142-5d3827d8e90f",
+    image: "/images/gallery/udaipur-palace.jpg",
     rating: 4.9,
     reviews: 89,
     groupSize: "4-12 people",
@@ -42,7 +43,7 @@ const packages = [
     duration: "5 Days / 4 Nights",
     price: "₹12,999",
     originalPrice: "₹16,999",
-    image: "photo-1512343879784-a960bf40e7f2",
+    image: "/images/gallery/goa-beach.jpg",
     rating: 4.6,
     reviews: 156,
     groupSize: "2-6 people",
@@ -57,7 +58,7 @@ const packages = [
     duration: "6 Days / 5 Nights",
     price: "₹28,999",
     originalPrice: "₹34,999",
-    image: "photo-1506905925346-21bda4d32df4",
+    image: "/images/gallery/kashmir.jpg",
     rating: 4.7,
     reviews: 67,
     groupSize: "2-10 people",
@@ -72,7 +73,7 @@ const packages = [
     duration: "8 Days / 7 Nights",
     price: "₹22,999",
     originalPrice: "₹28,999",
-    image: "photo-1469041797191-50ace28483c3",
+    image: "/images/gallery/manali.jpg",
     rating: 4.8,
     reviews: 43,
     groupSize: "4-12 people",
@@ -87,7 +88,7 @@ const packages = [
     duration: "6 Days / 5 Nights",
     price: "₹24,999",
     originalPrice: "₹29,999",
-    image: "photo-1500673922987-e212871fec22",
+    image: "/images/gallery/taj-mahal.jpg",
     rating: 4.7,
     reviews: 198,
     groupSize: "2-15 people",
@@ -101,6 +102,11 @@ const packages = [
 const categories = ["All", "Adventure", "Beach", "Culture", "Heritage", "Relaxation"];
 
 export default function Packages() {
+  const [selectedCategory, setSelectedCategory] = useState("All");
+
+  const filteredPackages = selectedCategory === "All" 
+    ? packages 
+    : packages.filter(pkg => pkg.category === selectedCategory);
   return (
     <Layout>
       {/* Hero Section */}
@@ -122,9 +128,10 @@ export default function Packages() {
             {categories.map((category) => (
               <Button
                 key={category}
-                variant={category === "All" ? "default" : "outline"}
+                variant={selectedCategory === category ? "default" : "outline"}
                 size="sm"
-                className={category === "All" ? "bg-gradient-primary" : ""}
+                className={selectedCategory === category ? "bg-gradient-primary" : ""}
+                onClick={() => setSelectedCategory(category)}
               >
                 {category}
               </Button>
@@ -136,15 +143,16 @@ export default function Packages() {
       {/* Packages Grid */}
       <section className="py-20 bg-background">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {packages.map((pkg) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {filteredPackages.map((pkg) => (
               <Card key={pkg.id} className="group overflow-hidden hover:shadow-warm transition-all duration-300 hover:scale-105">
                 {/* Package Image */}
-                <div className="relative h-48 overflow-hidden">
+                <div className="relative h-56 overflow-hidden">
                   <img
-                    src={`https://images.unsplash.com/${pkg.image}?w=500&h=300&fit=crop`}
+                    src={pkg.image}
                     alt={pkg.name}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    loading="lazy"
                   />
                   <div className="absolute top-4 left-4">
                     <Badge className="bg-primary text-primary-foreground">{pkg.category}</Badge>
@@ -152,7 +160,7 @@ export default function Packages() {
                   <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-lg px-3 py-1">
                     <span className="text-sm font-bold text-foreground">{pkg.duration}</span>
                   </div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
                 </div>
 
                 <CardContent className="p-6">
@@ -190,10 +198,10 @@ export default function Packages() {
                   {/* Highlights */}
                   <div className="mb-4">
                     <p className="text-sm text-muted-foreground mb-2">Highlights:</p>
-                    <div className="grid grid-cols-2 gap-1 text-xs">
-                      {pkg.highlights.slice(0, 4).map((highlight, index) => (
-                        <div key={index} className="flex items-center space-x-1">
-                          <div className="w-1 h-1 bg-primary rounded-full flex-shrink-0" />
+                    <div className="grid grid-cols-2 gap-2 text-sm">
+                      {pkg.highlights.map((highlight, index) => (
+                        <div key={index} className="flex items-start">
+                          <div className="w-1.5 h-1.5 bg-primary rounded-full flex-shrink-0 mt-2 mr-2" />
                           <span className="text-muted-foreground">{highlight}</span>
                         </div>
                       ))}

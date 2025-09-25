@@ -1,0 +1,413 @@
+{
+  "timestamp": "2025-09-01T07:17:35.796Z",
+  "summary": {
+    "total": 20,
+    "passed": 20,
+    "failed": 0,
+    "warnings": 0,
+    "errors": 0
+  },
+  "results": {
+    "passed": [
+      {
+        "destination": "Goa",
+        "id": "goa"
+      },
+      {
+        "destination": "Manali",
+        "id": "manali"
+      },
+      {
+        "destination": "Jaipur",
+        "id": "jaipur"
+      },
+      {
+        "destination": "Kashmir",
+        "id": "kashmir"
+      },
+      {
+        "destination": "Kerala",
+        "id": "kerala"
+      },
+      {
+        "destination": "Rajasthan",
+        "id": "rajasthan"
+      },
+      {
+        "destination": "Agra",
+        "id": "agra"
+      },
+      {
+        "destination": "Delhi",
+        "id": "delhi"
+      },
+      {
+        "destination": "Mumbai",
+        "id": "mumbai"
+      },
+      {
+        "destination": "Udaipur",
+        "id": "udaipur"
+      },
+      {
+        "destination": "Shimla",
+        "id": "shimla"
+      },
+      {
+        "destination": "Ooty",
+        "id": "ooty"
+      },
+      {
+        "destination": "Mysore",
+        "id": "mysore"
+      },
+      {
+        "destination": "Darjeeling",
+        "id": "darjeeling"
+      },
+      {
+        "destination": "Rishikesh",
+        "id": "rishikesh"
+      },
+      {
+        "destination": "Amritsar",
+        "id": "amritsar"
+      },
+      {
+        "destination": "Varanasi",
+        "id": "varanasi"
+      },
+      {
+        "destination": "Ladakh",
+        "id": "ladakh"
+      },
+      {
+        "destination": "Andaman & Nicobar",
+        "id": "andaman"
+      },
+      {
+        "destination": "Sikkim",
+        "id": "sikkim"
+      }
+    ],
+    "failed": [],
+    "warnings": [],
+    "errors": [],
+    "imageIssues": [
+      {
+        "destination": "Kerala",
+        "duplicates": [
+          {
+            "type": "attraction",
+            "name": "Periyar Wildlife Sanctuary",
+            "url": "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=600&h=400&fit=crop"
+          }
+        ]
+      },
+      {
+        "destination": "Mumbai",
+        "duplicates": [
+          {
+            "type": "attraction",
+            "name": "Marine Drive",
+            "url": "https://images.unsplash.com/photo-1570168007204-dfb528c6958f?w=600&h=400&fit=crop"
+          }
+        ]
+      },
+      {
+        "destination": "Mysore",
+        "duplicates": [
+          {
+            "type": "attraction",
+            "name": "St. Philomena's Church",
+            "url": "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=600&h=400&fit=crop"
+          }
+        ]
+      },
+      {
+        "destination": "Goa",
+        "brokenImages": [
+          {
+            "src": "https://images.unsplash.com/photo-1624906225771-ad3c3c585c4a?w=600&h=400&fit=crop",
+            "alt": "Old Goa Churches"
+          },
+          {
+            "src": "https://images.unsplash.com/photo-1584285401529-7ee4a8e50f6e?w=600&h=400&fit=crop",
+            "alt": "Dudhsagar Falls"
+          },
+          {
+            "src": "https://images.unsplash.com/photo-1587133599421-40e30b2e49e7?w=600&h=400&fit=crop",
+            "alt": "Fort Aguada"
+          }
+        ]
+      },
+      {
+        "destination": "Manali",
+        "brokenImages": [
+          {
+            "src": "https://images.unsplash.com/photo-1597167081301-fa4f5e485a79?w=600&h=400&fit=crop",
+            "alt": "Hadimba Temple"
+          },
+          {
+            "src": "https://images.unsplash.com/photo-1601391970980-a6e5c3650493?w=600&h=400&fit=crop",
+            "alt": "Kasol & Tosh Valley"
+          },
+          {
+            "src": "https://images.unsplash.com/photo-1626972308491-6b05db73903f?w=600&h=400&fit=crop",
+            "alt": "Mall Road"
+          }
+        ]
+      },
+      {
+        "destination": "Jaipur",
+        "brokenImages": [
+          {
+            "src": "https://images.unsplash.com/photo-1623401562023-692e5ad76ac7?w=600&h=400&fit=crop",
+            "alt": "Jantar Mantar"
+          }
+        ]
+      },
+      {
+        "destination": "Kashmir",
+        "brokenImages": [
+          {
+            "src": "https://images.unsplash.com/photo-1609947014287-65b18f1b3e02?w=600&h=400&fit=crop",
+            "alt": "Srinagar Gardens"
+          }
+        ]
+      },
+      {
+        "destination": "Kerala",
+        "brokenImages": [
+          {
+            "src": "https://images.unsplash.com/photo-1529418044304-1c0ffb7098b3?w=600&h=400&fit=crop",
+            "alt": "Munnar Tea Gardens"
+          }
+        ]
+      },
+      {
+        "destination": "Agra",
+        "brokenImages": [
+          {
+            "src": "https://images.unsplash.com/photo-1614947227018-cd5c96255b57?w=600&h=400&fit=crop",
+            "alt": "Fatehpur Sikri"
+          },
+          {
+            "src": "https://images.unsplash.com/photo-1623134291791-d80c0b93e1ef?w=600&h=400&fit=crop",
+            "alt": "Mehtab Bagh"
+          }
+        ]
+      },
+      {
+        "destination": "Delhi",
+        "brokenImages": [
+          {
+            "src": "https://images.unsplash.com/photo-1622542796158-c088b8119db7?w=600&h=400&fit=crop",
+            "alt": "Red Fort"
+          },
+          {
+            "src": "https://images.unsplash.com/photo-1515091943-9d5c0ad475af?w=600&h=400&fit=crop",
+            "alt": "Qutub Minar"
+          }
+        ]
+      },
+      {
+        "destination": "Mumbai",
+        "brokenImages": [
+          {
+            "src": "https://images.unsplash.com/photo-1622542796999-8d4788d732d8?w=600&h=400&fit=crop",
+            "alt": "Elephanta Caves"
+          },
+          {
+            "src": "https://images.unsplash.com/photo-1565966913248-ccce77bc8510?w=600&h=400&fit=crop",
+            "alt": "Bollywood Studios"
+          }
+        ]
+      },
+      {
+        "destination": "Udaipur",
+        "brokenImages": [
+          {
+            "src": "https://images.unsplash.com/photo-1597652204624-6da6604b2c8e?w=600&h=400&fit=crop",
+            "alt": "Fateh Sagar Lake"
+          }
+        ]
+      },
+      {
+        "destination": "Shimla",
+        "brokenImages": [
+          {
+            "src": "https://images.unsplash.com/photo-1626972308491-6b05db73903f?w=600&h=400&fit=crop",
+            "alt": "Mall Road"
+          },
+          {
+            "src": "https://images.unsplash.com/photo-1623401560023-692e5ad76ac7?w=600&h=400&fit=crop",
+            "alt": "Jakhu Temple"
+          },
+          {
+            "src": "https://images.unsplash.com/photo-1597167081301-fa4f5e485a79?w=600&h=400&fit=crop",
+            "alt": "Christ Church"
+          },
+          {
+            "src": "https://images.unsplash.com/photo-1602421652578-27570b1d2f6f?w=600&h=400&fit=crop",
+            "alt": "Kufri"
+          }
+        ]
+      },
+      {
+        "destination": "Ooty",
+        "brokenImages": [
+          {
+            "src": "https://images.unsplash.com/photo-1566221857770-508d35ee2b5d?w=600&h=400&fit=crop",
+            "alt": "Nilgiri Mountain Railway"
+          },
+          {
+            "src": "https://images.unsplash.com/photo-1580886563781-1f8402ce4e5b?w=600&h=400&fit=crop",
+            "alt": "Ooty Lake"
+          },
+          {
+            "src": "https://images.unsplash.com/photo-1580975510122-498c9f30b22f?w=600&h=400&fit=crop",
+            "alt": "Rose Garden"
+          }
+        ]
+      },
+      {
+        "destination": "Mysore",
+        "brokenImages": [
+          {
+            "src": "https://images.unsplash.com/photo-1568750524666-e0c7a1ad9cd1?w=600&h=400&fit=crop",
+            "alt": "Brindavan Gardens"
+          },
+          {
+            "src": "https://images.unsplash.com/photo-1534567153574-2b12153a87f0?w=600&h=400&fit=crop",
+            "alt": "Mysore Zoo"
+          }
+        ]
+      },
+      {
+        "destination": "Darjeeling",
+        "brokenImages": [
+          {
+            "src": "https://images.unsplash.com/photo-1566221857770-508d35ee2b5d?w=600&h=400&fit=crop",
+            "alt": "Darjeeling Himalayan Railway"
+          },
+          {
+            "src": "https://images.unsplash.com/photo-1591824438708-ce405f36ba3d?w=600&h=400&fit=crop",
+            "alt": "Padmaja Naidu Himalayan Zoological Park"
+          },
+          {
+            "src": "https://images.unsplash.com/photo-1626972308491-6b05db73903f?w=600&h=400&fit=crop",
+            "alt": "Mall Road"
+          }
+        ]
+      },
+      {
+        "destination": "Rishikesh",
+        "brokenImages": [
+          {
+            "src": "https://images.unsplash.com/photo-1601390395693-364c0e22031b?w=600&h=400&fit=crop",
+            "alt": "Ram Jhula"
+          },
+          {
+            "src": "https://images.unsplash.com/photo-1603984042729-c9e5a2b8f7f1?w=600&h=400&fit=crop",
+            "alt": "Beatles Ashram"
+          },
+          {
+            "src": "https://images.unsplash.com/photo-1620766182966-c09770a8e424?w=600&h=400&fit=crop",
+            "alt": "Neelkanth Mahadev Temple"
+          }
+        ]
+      },
+      {
+        "destination": "Amritsar",
+        "brokenImages": [
+          {
+            "src": "https://images.unsplash.com/photo-1609947017136-27dca3e5e7ce?w=600&h=400&fit=crop",
+            "alt": "Jallianwala Bagh"
+          },
+          {
+            "src": "https://images.unsplash.com/photo-1623401620116-3277b7046a4f?w=600&h=400&fit=crop",
+            "alt": "Wagah Border"
+          },
+          {
+            "src": "https://images.unsplash.com/photo-1633358805510-f96b08f7381b?w=600&h=400&fit=crop",
+            "alt": "Partition Museum"
+          }
+        ]
+      },
+      {
+        "destination": "Varanasi",
+        "brokenImages": [
+          {
+            "src": "https://images.unsplash.com/photo-1627894007069-85de53d8c2ab?w=600&h=400&fit=crop",
+            "alt": "Kashi Vishwanath Temple"
+          },
+          {
+            "src": "https://images.unsplash.com/photo-1634645894663-4ae0fd00e9f0?w=600&h=400&fit=crop",
+            "alt": "Sarnath"
+          },
+          {
+            "src": "https://images.unsplash.com/photo-1590424696525-cd7e2f263c20?w=600&h=400&fit=crop",
+            "alt": "Banaras Hindu University"
+          },
+          {
+            "src": "https://images.unsplash.com/photo-1603298111314-2b2bceb23322?w=600&h=400&fit=crop",
+            "alt": "Manikarnika Ghat"
+          }
+        ]
+      },
+      {
+        "destination": "Ladakh",
+        "brokenImages": [
+          {
+            "src": "https://images.unsplash.com/photo-1601296160691-20b42d3ec5ae?w=600&h=400&fit=crop",
+            "alt": "Nubra Valley"
+          },
+          {
+            "src": "https://images.unsplash.com/photo-1609003292404-dc0e82b071e3?w=600&h=400&fit=crop",
+            "alt": "Thiksey Monastery"
+          }
+        ]
+      },
+      {
+        "destination": "Andaman & Nicobar",
+        "brokenImages": [
+          {
+            "src": "https://images.unsplash.com/photo-1590930754517-92ec40c33b64?w=600&h=400&fit=crop",
+            "alt": "Neil Island"
+          },
+          {
+            "src": "https://images.unsplash.com/photo-1617640706308-20ad8a383fb7?w=600&h=400&fit=crop",
+            "alt": "Ross Island"
+          }
+        ]
+      },
+      {
+        "destination": "Sikkim",
+        "brokenImages": [
+          {
+            "src": "https://images.unsplash.com/photo-1601377383565-2c54fe6e76a1?w=600&h=400&fit=crop",
+            "alt": "Rumtek Monastery"
+          },
+          {
+            "src": "https://images.unsplash.com/photo-1600948836101-f9c0f5a5b630?w=600&h=400&fit=crop",
+            "alt": "Nathu La Pass"
+          },
+          {
+            "src": "https://images.unsplash.com/photo-1583417319070-2f8f09b0b5a4?w=600&h=400&fit=crop",
+            "alt": "Yumthang Valley"
+          },
+          {
+            "src": "https://images.unsplash.com/photo-1586074137025-c04f8a57b626?w=600&h=400&fit=crop",
+            "alt": "Gurudongmar Lake"
+          },
+          {
+            "src": "https://images.unsplash.com/photo-1602421652578-27570b1d2f6f?w=600&h=400&fit=crop",
+            "alt": "Pelling"
+          }
+        ]
+      }
+    ],
+    "descriptionIssues": []
+  }
+}

@@ -1,0 +1,354 @@
+{
+  "timestamp": "2025-09-01T07:18:52.699Z",
+  "summary": {
+    "totalDestinations": 20,
+    "totalAttractions": 117,
+    "uniqueImages": 105,
+    "duplicateImages": 18,
+    "unsplashImages": 116,
+    "localImages": 1
+  },
+  "duplicateImages": [
+    {
+      "url": "https://images.unsplash.com/photo-1506619216599-9d16d0903dfd?w=600&h=400&fit=crop",
+      "usage": [
+        {
+          "destination": "Goa",
+          "attraction": "Spice Plantations",
+          "type": "attraction"
+        },
+        {
+          "destination": "Jaipur",
+          "attraction": "Johari Bazaar",
+          "type": "attraction"
+        },
+        {
+          "destination": "Delhi",
+          "attraction": "Chandni Chowk",
+          "type": "attraction"
+        },
+        {
+          "destination": "Mysore",
+          "attraction": "Devaraja Market",
+          "type": "attraction"
+        },
+        {
+          "destination": "Amritsar",
+          "attraction": "Hall Bazaar",
+          "type": "attraction"
+        }
+      ]
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1599831413648-97eae03f743d?w=1200&h=800&fit=crop",
+      "usage": [
+        {
+          "destination": "Manali",
+          "type": "hero"
+        },
+        {
+          "destination": "Shimla",
+          "type": "hero"
+        }
+      ]
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=600&h=400&fit=crop",
+      "usage": [
+        {
+          "destination": "Manali",
+          "attraction": "Solang Valley",
+          "type": "attraction"
+        },
+        {
+          "destination": "Ladakh",
+          "attraction": "Leh Palace",
+          "type": "attraction"
+        }
+      ]
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1597167081301-fa4f5e485a79?w=600&h=400&fit=crop",
+      "usage": [
+        {
+          "destination": "Manali",
+          "attraction": "Hadimba Temple",
+          "type": "attraction"
+        },
+        {
+          "destination": "Shimla",
+          "attraction": "Christ Church",
+          "type": "attraction"
+        }
+      ]
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1581793745862-99fde7fa73d2?w=600&h=400&fit=crop",
+      "usage": [
+        {
+          "destination": "Manali",
+          "attraction": "Old Manali",
+          "type": "attraction"
+        },
+        {
+          "destination": "Ooty",
+          "attraction": "Doddabetta Peak",
+          "type": "attraction"
+        }
+      ]
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1626972308491-6b05db73903f?w=600&h=400&fit=crop",
+      "usage": [
+        {
+          "destination": "Manali",
+          "attraction": "Mall Road",
+          "type": "attraction"
+        },
+        {
+          "destination": "Shimla",
+          "attraction": "Mall Road",
+          "type": "attraction"
+        },
+        {
+          "destination": "Darjeeling",
+          "attraction": "Mall Road",
+          "type": "attraction"
+        }
+      ]
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1477587458883-47145ed94245?w=600&h=400&fit=crop",
+      "usage": [
+        {
+          "destination": "Jaipur",
+          "attraction": "Jaigarh Fort",
+          "type": "attraction"
+        },
+        {
+          "destination": "Rajasthan",
+          "attraction": "Jaisalmer Fort",
+          "type": "attraction"
+        },
+        {
+          "destination": "Agra",
+          "attraction": "Akbar's Tomb",
+          "type": "attraction"
+        },
+        {
+          "destination": "Udaipur",
+          "attraction": "Monsoon Palace",
+          "type": "attraction"
+        }
+      ]
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=1200&h=800&fit=crop",
+      "usage": [
+        {
+          "destination": "Kerala",
+          "type": "hero"
+        },
+        {
+          "destination": "Varanasi",
+          "type": "hero"
+        }
+      ]
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=600&h=400&fit=crop",
+      "usage": [
+        {
+          "destination": "Kerala",
+          "attraction": "Alleppey Backwaters",
+          "type": "attraction"
+        },
+        {
+          "destination": "Kerala",
+          "attraction": "Periyar Wildlife Sanctuary",
+          "type": "attraction"
+        },
+        {
+          "destination": "Ooty",
+          "attraction": "Botanical Gardens",
+          "type": "attraction"
+        },
+        {
+          "destination": "Varanasi",
+          "attraction": "Dashashwamedh Ghat",
+          "type": "attraction"
+        }
+      ]
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1581833971358-2c8b550f87b3?w=600&h=400&fit=crop",
+      "usage": [
+        {
+          "destination": "Rajasthan",
+          "attraction": "Mehrangarh Fort, Jodhpur",
+          "type": "attraction"
+        },
+        {
+          "destination": "Udaipur",
+          "attraction": "Saheliyon Ki Bari",
+          "type": "attraction"
+        }
+      ]
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=600&h=400&fit=crop",
+      "usage": [
+        {
+          "destination": "Rajasthan",
+          "attraction": "Lake Palace",
+          "type": "attraction"
+        },
+        {
+          "destination": "Udaipur",
+          "attraction": "Lake Palace",
+          "type": "attraction"
+        }
+      ]
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1570168007204-dfb528c6958f?w=600&h=400&fit=crop",
+      "usage": [
+        {
+          "destination": "Mumbai",
+          "attraction": "Gateway of India",
+          "type": "attraction"
+        },
+        {
+          "destination": "Mumbai",
+          "attraction": "Marine Drive",
+          "type": "attraction"
+        },
+        {
+          "destination": "Udaipur",
+          "attraction": "City Palace Complex",
+          "type": "attraction"
+        },
+        {
+          "destination": "Varanasi",
+          "attraction": "Assi Ghat",
+          "type": "attraction"
+        }
+      ]
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1602421652578-27570b1d2f6f?w=600&h=400&fit=crop",
+      "usage": [
+        {
+          "destination": "Shimla",
+          "attraction": "Kufri",
+          "type": "attraction"
+        },
+        {
+          "destination": "Sikkim",
+          "attraction": "Pelling",
+          "type": "attraction"
+        }
+      ]
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1566221857770-508d35ee2b5d?w=600&h=400&fit=crop",
+      "usage": [
+        {
+          "destination": "Ooty",
+          "attraction": "Nilgiri Mountain Railway",
+          "type": "attraction"
+        },
+        {
+          "destination": "Darjeeling",
+          "attraction": "Darjeeling Himalayan Railway",
+          "type": "attraction"
+        }
+      ]
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1542843137-8791a6904d14?w=600&h=400&fit=crop",
+      "usage": [
+        {
+          "destination": "Ooty",
+          "attraction": "Tea Gardens",
+          "type": "attraction"
+        },
+        {
+          "destination": "Darjeeling",
+          "attraction": "Tea Gardens",
+          "type": "attraction"
+        }
+      ]
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=600&h=400&fit=crop",
+      "usage": [
+        {
+          "destination": "Mysore",
+          "attraction": "Mysore Palace",
+          "type": "attraction"
+        },
+        {
+          "destination": "Mysore",
+          "attraction": "St. Philomena's Church",
+          "type": "attraction"
+        },
+        {
+          "destination": "Amritsar",
+          "attraction": "Golden Temple",
+          "type": "attraction"
+        },
+        {
+          "destination": "Andaman & Nicobar",
+          "attraction": "Cellular Jail",
+          "type": "attraction"
+        }
+      ]
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&h=400&fit=crop",
+      "usage": [
+        {
+          "destination": "Darjeeling",
+          "attraction": "Tiger Hill",
+          "type": "attraction"
+        },
+        {
+          "destination": "Rishikesh",
+          "attraction": "Laxman Jhula",
+          "type": "attraction"
+        },
+        {
+          "destination": "Ladakh",
+          "attraction": "Hemis Monastery",
+          "type": "attraction"
+        },
+        {
+          "destination": "Sikkim",
+          "attraction": "Tsomgo Lake",
+          "type": "attraction"
+        }
+      ]
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1200&h=800&fit=crop",
+      "usage": [
+        {
+          "destination": "Rishikesh",
+          "type": "hero"
+        },
+        {
+          "destination": "Sikkim",
+          "type": "hero"
+        }
+      ]
+    }
+  ],
+  "recommendations": [
+    "Replace duplicate images immediately",
+    "Use local images for major landmarks",
+    "Verify each image matches its location",
+    "Add descriptive alt text",
+    "Consider using a CDN for better performance"
+  ]
+}

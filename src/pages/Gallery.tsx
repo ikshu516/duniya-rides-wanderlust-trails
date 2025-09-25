@@ -1,62 +1,140 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Layout from "@/components/Layout";
 import { Card } from "@/components/ui/card";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const galleryImages = [
   {
     id: 1,
-    src: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500&h=600&fit=crop",
-    alt: "Goa Beaches",
+    src: "https://images.unsplash.com/photo-1594801001182-99ee8f8d5db9?w=800&h=600&fit=crop",
+    alt: "Palolem Beach, Goa",
     category: "Beaches"
   },
   {
     id: 2,
-    src: "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=500&h=700&fit=crop",
-    alt: "Kashmir Mountains",
+    src: "https://images.unsplash.com/photo-1700570036323-b4ceb7137f16?w=800&h=600&fit=crop",
+    alt: "Pahalgam, Kashmir",
     category: "Mountains"
   },
   {
     id: 3,
-    src: "https://images.unsplash.com/photo-1499856871958-5b9627545d1a?w=500&h=500&fit=crop",
-    alt: "Rajasthan Palace",
+    src: "https://images.unsplash.com/photo-1709338573277-c161cbf8702c?w=800&h=600&fit=crop",
+    alt: "City Palace, Udaipur",
     category: "Heritage"
   },
   {
     id: 4,
-    src: "https://images.unsplash.com/photo-1548013146-72479768bada?w=500&h=800&fit=crop",
-    alt: "Kerala Backwaters",
+    src: "https://images.unsplash.com/photo-1704365159747-1f7b8913044f?w=800&h=600&fit=crop",
+    alt: "Alleppey Backwaters, Kerala",
     category: "Nature"
   },
   {
     id: 5,
-    src: "https://images.unsplash.com/photo-1559627043-b3c3ac1a88f6?w=500&h=600&fit=crop",
-    alt: "Manali Adventure",
+    src: "https://images.unsplash.com/photo-1677820915325-d8ce3184c2a4?w=800&h=600&fit=crop",
+    alt: "Solang Valley, Manali",
     category: "Adventure"
   },
   {
     id: 6,
-    src: "https://images.unsplash.com/photo-1561361513-2d000314c8e4?w=500&h=700&fit=crop",
-    alt: "Jaipur Heritage",
+    src: "https://images.unsplash.com/photo-1650530777057-3a7dbc24bf6c?w=800&h=600&fit=crop",
+    alt: "Hawa Mahal, Jaipur",
     category: "Heritage"
   },
   {
     id: 7,
-    src: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500&h=500&fit=crop",
-    alt: "Agra Monument",
+    src: "https://images.unsplash.com/photo-1681097233063-aa7a941bb688?w=800&h=600&fit=crop",
+    alt: "Taj Mahal, Agra",
     category: "Heritage"
   },
   {
     id: 8,
-    src: "https://images.unsplash.com/photo-1580481072645-022f9a6dbf27?w=500&h=800&fit=crop",
-    alt: "Himachal Mountains",
+    src: "https://images.unsplash.com/photo-1689921489504-48d12b2b7f9c?w=800&h=600&fit=crop",
+    alt: "Spiti Valley, Himachal",
     category: "Mountains"
+  },
+  {
+    id: 9,
+    src: "https://images.unsplash.com/photo-1732946801536-6c19e49a0caf?w=800&h=600&fit=crop",
+    alt: "Radhanagar Beach, Andaman",
+    category: "Beaches"
+  },
+  {
+    id: 10,
+    src: "https://images.unsplash.com/photo-1752667842832-dfa273fd1362?w=800&h=600&fit=crop",
+    alt: "Ganga Aarti, Varanasi",
+    category: "Spiritual"
+  },
+  {
+    id: 11,
+    src: "https://images.unsplash.com/photo-1681843279178-7f830d2a5d85?w=800&h=600&fit=crop",
+    alt: "Pangong Lake, Ladakh",
+    category: "Mountains"
+  },
+  {
+    id: 12,
+    src: "https://images.unsplash.com/photo-1647364147271-90897257f460?w=800&h=600&fit=crop",
+    alt: "Khajjiar, Himachal",
+    category: "Nature"
+  },
+  {
+    id: 13,
+    src: "https://images.unsplash.com/photo-1651910030315-aa76f46f30c9?w=800&h=600&fit=crop",
+    alt: "Golden Temple, Amritsar",
+    category: "Spiritual"
+  },
+  {
+    id: 14,
+    src: "https://images.unsplash.com/photo-1637075735042-727375ffcb6a?w=800&h=600&fit=crop",
+    alt: "Mysore Palace, Karnataka",
+    category: "Heritage"
+  },
+  {
+    id: 15,
+    src: "https://images.unsplash.com/photo-1652120712347-6e7b037325fa?w=800&h=600&fit=crop",
+    alt: "Dudhsagar Falls, Goa",
+    category: "Nature"
+  },
+  {
+    id: 16,
+    src: "https://images.unsplash.com/photo-1670923331633-be262e035a9a?w=800&h=600&fit=crop",
+    alt: "Rann of Kutch, Gujarat",
+    category: "Nature"
   }
 ];
 
-const categories = ["All", "Beaches", "Mountains", "Heritage", "Nature", "Adventure"];
+const categories = ["All", "Beaches", "Mountains", "Heritage", "Nature", "Adventure", "Spiritual"];
+
+interface ImageState {
+  loaded: boolean;
+  error: boolean;
+}
 
 export default function Gallery() {
   const [selectedCategory, setSelectedCategory] = useState("All");
+  const [imageStates, setImageStates] = useState<Record<number, ImageState>>({});
+
+  useEffect(() => {
+    // Initialize all images as loading
+    const initialStates = galleryImages.reduce((acc, img) => ({
+      ...acc,
+      [img.id]: { loaded: false, error: false }
+    }), {});
+    setImageStates(initialStates);
+  }, []);
+
+  const handleImageLoad = (id: number) => {
+    setImageStates(prev => ({
+      ...prev,
+      [id]: { ...prev[id], loaded: true }
+    }));
+  };
+
+  const handleImageError = (id: number) => {
+    setImageStates(prev => ({
+      ...prev,
+      [id]: { ...prev[id], error: true }
+    }));
+  };
 
   const filteredImages = selectedCategory === "All" 
     ? galleryImages 
@@ -94,24 +172,39 @@ export default function Gallery() {
           </div>
 
           {/* Masonry Gallery */}
-          <div className="columns-1 md:columns-2 lg:columns-3 xl:columns-4 gap-6 space-y-6">
-            {filteredImages.map((image) => (
-              <Card key={image.id} className="break-inside-avoid overflow-hidden group cursor-pointer hover:shadow-hover transition-all duration-300">
-                <div className="relative">
-                  <img
-                    src={image.src}
-                    alt={image.alt}
-                    className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-secondary/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <div className="absolute bottom-4 left-4 right-4">
-                      <h3 className="text-white font-semibold text-lg">{image.alt}</h3>
-                      <p className="text-white/90 text-sm">{image.category}</p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {filteredImages.map((image) => {
+              const { loaded = false, error = false } = imageStates[image.id] || {};
+              const showSkeleton = !loaded && !error;
+              const showError = error;
+
+              return (
+                <Card key={image.id} className="overflow-hidden group relative">
+                  {showSkeleton && (
+                    <Skeleton className="w-full h-64" />
+                  )}
+                  {showError && (
+                    <div className="w-full h-64 bg-gray-100 flex items-center justify-center">
+                      <span className="text-muted-foreground">Image not available</span>
                     </div>
+                  )}
+                  {!showError && (
+                    <img
+                      src={image.src}
+                      alt={image.alt}
+                      className="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105"
+                      onLoad={() => handleImageLoad(image.id)}
+                      onError={() => handleImageError(image.id)}
+                      loading="lazy"
+                    />
+                  )}
+                  <div className="p-4">
+                    <h3 className="font-medium text-lg">{image.alt}</h3>
+                    <span className="text-sm text-muted-foreground">{image.category}</span>
                   </div>
-                </div>
-              </Card>
-            ))}
+                </Card>
+              );
+            })}
           </div>
         </div>
       </div>

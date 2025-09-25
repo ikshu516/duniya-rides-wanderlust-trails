@@ -5,7 +5,32 @@ import { Badge } from "@/components/ui/badge";
 import { ArrowRight, Star, Clock, Users, MapPin, CheckCircle, Calendar, Plane } from "lucide-react";
 import Layout from "@/components/Layout";
 
-const packageData: Record<string, any> = {
+interface ItineraryDay {
+  day: number;
+  title: string;
+  location: string;
+  activities: string[];
+}
+
+interface PackageData {
+  name: string;
+  subtitle: string;
+  duration: string;
+  price: string;
+  originalPrice: string;
+  image: string;
+  rating: number;
+  reviews: number;
+  groupSize: string;
+  destinations: string[];
+  category: string;
+  overview: string;
+  includes: string[];
+  excludes: string[];
+  itinerary: ItineraryDay[];
+}
+
+const packageData: Record<string, PackageData> = {
   "kerala-3-day": {
     name: "Kerala Backwaters Experience",
     subtitle: "Luxury Houseboat & Backwater Cruise",
@@ -200,7 +225,7 @@ export default function PackageDetail() {
             <section>
               <h2 className="text-3xl font-bold text-foreground mb-6">Detailed Itinerary</h2>
               <div className="space-y-6">
-                {data.itinerary.map((day: any, index: number) => (
+                {data.itinerary.map((day: ItineraryDay, index: number) => (
                   <Card key={index}>
                     <CardHeader>
                       <CardTitle className="flex items-center justify-between">

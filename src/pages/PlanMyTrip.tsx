@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -8,17 +8,91 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { MapPin, Calendar, DollarSign, Users } from "lucide-react";
 import Layout from "@/components/Layout";
 import { useToast } from "@/hooks/use-toast";
+import { openWhatsAppWithText, WHATSAPP } from "@/lib/whatsapp";
+import { clearPendingSelection, getPendingSelection, saveLead } from "@/lib/lead";
+import { useLocation } from "react-router-dom";
+import { destinationsData } from "@/data/destinationsData";
 
 export default function PlanMyTrip() {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const location = useLocation();
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setIsSubmitting(true);
+  // Derive selected package details from router state if present
+  const selected = useMemo(() => {
+    const state = (location.state || {}) as any;
+    const pkgId: string | undefined = state.packageId;
+    const destId: string | undefined = state.destinationId;
+    const destNameFromState: string | undefined = state.destinationName || state.destination;
+    const pending = getPendingSelection();
 
-    const formData = new FormData(e.currentTarget);
+    let foundDestination: { id: string; name: string } | null = null;
+    let foundPackage: {
+      id: string;
+      name?: string;
+      duration?: string;
+      type?: string;
+      price?: { min: number; max: number };
+    } | null = null;
+
+    // If we have IDs, search structured data for robust prefill
+    if (pkgId || pending?.packageId) {
+      const targetPkgId = pkgId || pending?.packageId;
+      for (const d of destinationsData) {
+        const p = d.packages.find(pp => pp.id === targetPkgId);
+        if (p) {
+          foundDestination = { id: d.id, name: d.name };
+          foundPackage = {
+            id: p.id,
+            name: p.name,
+            duration: p.duration,
+            type: p.type,
+            price: { min: p.price.min, max: p.price.max },
+          };
+          break;
+        }
+      }
+    }
+
+    // Fall back to state-provided fields if not found by lookup
+    if (!foundDestination && (destId || destNameFromState || pending?.destinationName)) {
+      foundDestination = {
+        id: destId || pending?.destinationId || '',
+        name: destNameFromState || pending?.destinationName || '',
+      };
+    }
+    if (!foundPackage && (pkgId || pending?.packageId)) {
+      foundPackage = {
+        id: pkgId || pending!.packageId,
+        name: state.packageName || pending?.packageName,
+        duration: state.packageDuration || pending?.packageDuration,
+        type: state.packageType || pending?.packageType,
+        price: state.packagePrice || pending?.packagePrice,
+      };
+    }
+
+    // Helper to parse number of days from "X Days, Y Nights" style string
+    const parseDays = (duration?: string): number | undefined => {
+      if (!duration) return undefined;
+      const match = duration.match(/(\d+)\s*Days?/i);
+      if (match) return parseInt(match[1], 10);
+      // Try nights + 1 if days isn't explicit
+      const nights = duration.match(/(\d+)\s*Nights?/i);
+      if (nights) return parseInt(nights[1], 10) + 1;
+      return undefined;
+    };
+
+    const days = parseDays(foundPackage?.duration);
+
+    return {
+      destination: foundDestination || null,
+      pkg: foundPackage || null,
+      parsedDays: days,
+    };
+  }, [location.state]);
+
+  const sendWhatsAppMessage = (formData: FormData) => {
     const data = {
       fullName: formData.get('fullName'),
       phone: formData.get('phone'),
@@ -26,27 +100,65 @@ export default function PlanMyTrip() {
       destination: formData.get('destination'),
       travelFrom: formData.get('travelFrom'),
       travelTo: formData.get('travelTo'),
+      numberOfTravelers: formData.get('numberOfTravelers'),
       numberOfDays: formData.get('numberOfDays'),
       budgetRange: formData.get('budgetRange'),
       travelStyle: formData.get('travelStyle'),
       additionalNotes: formData.get('additionalNotes')
     };
+    
+    // Selected package context (if available)
+    const pkgLines = selected.pkg ? (
+      `*Selected Package:* ${encodeURIComponent(selected.pkg.name || selected.pkg.id)}%0A` +
+      (selected.destination?.name ? `*For Destination:* ${encodeURIComponent(selected.destination.name)}%0A` : '') +
+      (selected.pkg.type ? `*Package Type:* ${encodeURIComponent(selected.pkg.type)}%0A` : '') +
+      (selected.pkg.duration ? `*Duration:* ${encodeURIComponent(selected.pkg.duration)}%0A` : '') +
+      (selected.pkg.price ? `*Package Price:* ₹${selected.pkg.price.min.toLocaleString()} - ₹${selected.pkg.price.max.toLocaleString()} per person per night%0A` : '') +
+      `*Package ID:* ${encodeURIComponent(selected.pkg.id)}%0A%0A`
+    ) : '';
 
+    // Format the message with proper line breaks and structure
+    const formattedMessage = `*New Trip Planning Request*%0A%0A` +
+      pkgLines +
+      `*Name:* ${data.fullName}%0A` +
+      `*Email:* ${data.email}%0A` +
+      `*Phone:* ${data.phone}%0A` +
+      `*Destination(s):* ${data.destination}%0A` +
+      `*Travel Dates:* ${data.travelFrom} to ${data.travelTo}%0A` +
+      `*Travelers:* ${data.numberOfTravelers}%0A` +
+      `*Duration:* ${data.numberOfDays} days%0A` +
+      `*Budget:* ${data.budgetRange}%0A` +
+      `*Travel Style:* ${data.travelStyle}%0A` +
+      `*Additional Notes:*%0A${data.additionalNotes || 'None'}`;
+    
+    // Register lead locally (lightweight client-side capture)
+    saveLead('plan-trip', { ...data, selectedPackage: selected });
+
+    // Open WhatsApp with the pre-filled message
+    openWhatsAppWithText(formattedMessage);
+    clearPendingSelection();
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    const formData = new FormData(e.currentTarget);
+    
     try {
-      // Simulate API call to send email to admin@duniyarides.com
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      
-      console.log('Trip planning data:', data);
+      // Send data to WhatsApp
+      sendWhatsAppMessage(formData);
       
       setIsSubmitted(true);
       toast({
-        title: "Trip Request Submitted!",
-        description: "We'll contact you within 24 hours with a personalized itinerary.",
+        title: "Opening WhatsApp...",
+        description: "You'll be redirected to WhatsApp to submit your trip request.",
       });
     } catch (error) {
+      console.error('Error sending message:', error);
       toast({
-        title: "Submission Failed",
-        description: "Please try again or contact us directly.",
+        title: "Error",
+        description: "Could not open WhatsApp. Please try again or contact us directly.",
         variant: "destructive",
       });
     } finally {
@@ -116,6 +228,25 @@ export default function PlanMyTrip() {
               <CardTitle className="text-2xl text-center">Trip Planning Form</CardTitle>
             </CardHeader>
             <CardContent>
+              {/* Selected package summary (if navigated from a package) */}
+              {selected.pkg && (
+                <div className="mb-6 rounded-lg border border-primary/20 bg-primary/5 p-4">
+                  <div className="text-sm text-muted-foreground mb-1">Pre-selected from destination page</div>
+                  <div className="flex flex-wrap items-center gap-2 text-foreground">
+                    <span className="font-semibold">{selected.pkg.name || 'Selected Package'}</span>
+                    {selected.pkg.type && <span className="text-xs bg-primary/10 text-primary px-2 py-1 rounded">{selected.pkg.type}</span>}
+                    {selected.destination?.name && (
+                      <span className="text-sm">• {selected.destination.name}</span>
+                    )}
+                    {selected.pkg.duration && (
+                      <span className="text-sm">• {selected.pkg.duration}</span>
+                    )}
+                    {selected.pkg.price && (
+                      <span className="text-sm">• ₹{selected.pkg.price.min.toLocaleString()} - ₹{selected.pkg.price.max.toLocaleString()} pppn</span>
+                    )}
+                  </div>
+                </div>
+              )}
               <form onSubmit={handleSubmit} className="space-y-6">
                 {/* Personal Information */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -125,7 +256,7 @@ export default function PlanMyTrip() {
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="phone">Phone Number *</Label>
-                    <Input id="phone" name="phone" type="tel" required placeholder="+91 98765 43210" />
+                    <Input id="phone" name="phone" type="tel" required placeholder={WHATSAPP.displayNumber} />
                   </div>
                 </div>
 
@@ -144,7 +275,7 @@ export default function PlanMyTrip() {
                   <div className="space-y-6">
                     <div className="space-y-2">
                       <Label htmlFor="destination">Preferred Destination(s) *</Label>
-                      <Input id="destination" name="destination" required placeholder="e.g., Kerala, Rajasthan, Kashmir" />
+                      <Input id="destination" name="destination" required placeholder="e.g., Kerala, Rajasthan, Kashmir" defaultValue={selected.destination?.name || ''} />
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -176,7 +307,7 @@ export default function PlanMyTrip() {
                       </div>
                       <div className="space-y-2">
                         <Label htmlFor="numberOfDays">Number of Days</Label>
-                        <Input id="numberOfDays" name="numberOfDays" type="number" placeholder="7" min="1" max="30" />
+                        <Input id="numberOfDays" name="numberOfDays" type="number" placeholder="7" min="1" max="30" defaultValue={selected.parsedDays || ''} />
                       </div>
                     </div>
 
@@ -227,17 +358,27 @@ export default function PlanMyTrip() {
                   </div>
                 </div>
 
-                <div className="pt-6">
-                <Button 
-                  type="submit" 
-                  className="w-full bg-gradient-saffron hover:shadow-glow text-lg py-4 rounded-full font-semibold transition-all duration-300"
-                  disabled={isSubmitting}
-                >
-                  {isSubmitting ? "✨ Creating Your Dream Trip..." : "🚀 Let's Plan My Indian Adventure!"}
-                </Button>
-                <p className="text-sm text-muted-foreground text-center mt-3 font-lora">
-                  💫 Our travel experts will craft your personalized itinerary within 24 hours
-                </p>
+                <div className="flex justify-center pt-4">
+                  <Button 
+                    type="submit" 
+                    className="w-full sm:w-auto bg-gradient-primary hover:opacity-90 transition-opacity"
+                    disabled={isSubmitting}
+                  >
+                    {isSubmitting ? (
+                      <>
+                        <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                        Processing...
+                      </>
+                    ) : (
+                      <span className="flex items-center">
+                        <MapPin className="mr-2 h-4 w-4" />
+                        Plan My Trip Now
+                      </span>
+                    )}
+                  </Button>
                 </div>
               </form>
             </CardContent>

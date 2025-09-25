@@ -1,14 +1,14 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, Phone, Mail } from "lucide-react";
+import { WHATSAPP } from "@/lib/whatsapp";
 import { Button } from "@/components/ui/button";
 
 const navigation = [
   { name: "Home", href: "/" },
+  { name: "About", href: "/about" },
   { name: "Destinations", href: "/destinations" },
-  { name: "Packages", href: "/packages" },
-  { name: "Travel Styles", href: "/travel-styles" },
-  { name: "Blog", href: "/blog" },
+  { name: "Gallery", href: "/gallery" },
   { name: "Testimonials", href: "/testimonials" },
   { name: "Contact", href: "/contact" },
 ];
@@ -27,7 +27,7 @@ export default function Navbar() {
           <div className="flex items-center space-x-4">
             <div className="flex items-center space-x-1">
               <Phone className="h-3 w-3" />
-              <span>+91 98765 43210</span>
+              <span>{WHATSAPP.displayNumber}</span>
             </div>
             <div className="flex items-center space-x-1">
               <Mail className="h-3 w-3" />

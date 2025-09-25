@@ -1,13 +1,11 @@
 import { MessageCircle } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
+import { openWhatsAppWithText } from "@/lib/whatsapp";
 
 export default function WhatsAppButton() {
   const handleWhatsAppClick = () => {
-    const phoneNumber = "+917020425189"; // Remove space for URL compatibility
-    const message = "Hi! I'm interested in booking a trip with Duniya Rides. Can you help me?";
-    const whatsappUrl = `https://web.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`;
-    
-    window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+    const message = encodeURIComponent("Hi! I'm interested in booking a trip with Duniya Rides. Can you help me?");
+    openWhatsAppWithText(message);
   };
 
   return (

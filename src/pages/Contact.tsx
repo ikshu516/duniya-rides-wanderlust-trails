@@ -1,47 +1,127 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { Phone, Mail, MapPin, Clock, MessageCircle, Send } from "lucide-react";
+import { Phone, Mail, MapPin, Clock, MessageCircle, Send, Search, ChevronDown, X } from "lucide-react";
 import Layout from "@/components/Layout";
+import { openWhatsAppWithText, WHATSAPP } from "@/lib/whatsapp";
+import { getPendingSelection, clearPendingSelection, saveLead } from "@/lib/lead";
 import { useToast } from "@/hooks/use-toast";
+
+const popularDestinations = [
+  { id: 1, name: "Agra, Uttar Pradesh" },
+  { id: 2, name: "Jaipur, Rajasthan" },
+  { id: 3, name: "Varanasi, Uttar Pradesh" },
+  { id: 4, name: "Goa" },
+  { id: 5, name: "Kerala" },
+  { id: 6, name: "Ladakh" },
+  { id: 7, name: "Shimla, Himachal Pradesh" },
+  { id: 8, name: "Manali, Himachal Pradesh" },
+  { id: 9, name: "Udaipur, Rajasthan" },
+  { id: 10, name: "Rishikesh, Uttarakhand" },
+  { id: 11, name: "Darjeeling, West Bengal" },
+  { id: 12, name: "Munnar, Kerala" },
+  { id: 13, name: "Ooty, Tamil Nadu" },
+  { id: 14, name: "Andaman and Nicobar Islands" },
+  { id: 15, name: "Mysore, Karnataka" },
+];
 
 export default function Contact() {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [showDropdown, setShowDropdown] = useState(false);
+  const [filteredDestinations, setFilteredDestinations] = useState(popularDestinations);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setShowDropdown(false);
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const query = e.target.value;
+    setSearchQuery(query);
+    setFilteredDestinations(
+      popularDestinations.filter(dest =>
+        dest.name.toLowerCase().includes(query.toLowerCase())
+      )
+    );
+    setShowDropdown(true);
+  };
+
+  const selectDestination = (destination: string) => {
+    setSearchQuery(destination);
+    setShowDropdown(false);
+  };
+
+  const clearSearch = () => {
+    setSearchQuery('');
+    setFilteredDestinations(popularDestinations);
+  };
+
+  const sendWhatsAppMessage = (formData: FormData) => {
+    const name = formData.get('name');
+    const email = formData.get('email');
+    const phone = formData.get('phone');
+    const subject = formData.get('subject');
+    const message = formData.get('message');
+    const pending = getPendingSelection();
+    
+    // Format the message with proper line breaks and structure
+    const formattedMessage = `*New Contact Form Submission*%0A%0A` +
+      (pending ? (
+        `*Selected Package:* ${encodeURIComponent(pending.packageName || pending.packageId)}%0A` +
+        (pending.destinationName ? `*For Destination:* ${encodeURIComponent(pending.destinationName)}%0A` : '') +
+        (pending.packageType ? `*Package Type:* ${encodeURIComponent(pending.packageType)}%0A` : '') +
+        (pending.packageDuration ? `*Duration:* ${encodeURIComponent(pending.packageDuration)}%0A` : '') +
+        (pending.packagePrice ? `*Package Price:* ₹${pending.packagePrice.min.toLocaleString()} - ₹${pending.packagePrice.max.toLocaleString()} per person per night%0A` : '') +
+        `*Package ID:* ${encodeURIComponent(pending.packageId)}%0A%0A`
+      ) : '') +
+      `*Name:* ${name}%0A` +
+      `*Email:* ${email}%0A` +
+      `*Phone:* ${phone || 'Not provided'}%0A` +
+      `*Subject:* ${subject}%0A` +
+      `*Message:*%0A${message}`;
+    
+    // Open WhatsApp with the pre-filled message
+    saveLead('contact', { name, email, phone, subject, message, selectedPackage: pending });
+    openWhatsAppWithText(formattedMessage);
+    clearPendingSelection();
+  };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
 
     const formData = new FormData(e.currentTarget);
-    const data = {
-      name: formData.get('name'),
-      email: formData.get('email'),
-      phone: formData.get('phone'),
-      subject: formData.get('subject'),
-      message: formData.get('message')
-    };
-
+    
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      console.log('Contact form data:', data);
+      // Send data to WhatsApp
+      sendWhatsAppMessage(formData);
       
       toast({
-        title: "Message Sent!",
-        description: "Thank you for contacting us. We'll get back to you within 24 hours.",
+        title: "Opening WhatsApp...",
+        description: "You'll be redirected to WhatsApp to send your message.",
       });
 
       // Reset form
       (e.target as HTMLFormElement).reset();
     } catch (error) {
+      console.error('Error sending message:', error);
       toast({
-        title: "Failed to send message",
-        description: "Please try again or contact us directly.",
+        title: "Error",
+        description: "Could not open WhatsApp. Please try again or contact us directly.",
         variant: "destructive",
       });
     } finally {
@@ -57,9 +137,68 @@ export default function Contact() {
           <h1 className="text-4xl md:text-5xl font-bold mb-4">
             Get in Touch
           </h1>
-          <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto">
+          <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto mb-8">
             Ready to plan your dream trip to India? Our travel experts are here to help you every step of the way.
           </p>
+          
+          {/* Search Bar */}
+          <div className="max-w-2xl mx-auto relative" ref={dropdownRef}>
+            <div className="relative">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
+              <Input
+                type="text"
+                placeholder="Search for destinations in India..."
+                className="pl-10 pr-10 py-6 text-base border-0 shadow-lg"
+                value={searchQuery}
+                onChange={handleSearchChange}
+                onFocus={() => setShowDropdown(true)}
+              />
+              {searchQuery && (
+                <button
+                  onClick={clearSearch}
+                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                >
+                  <X className="h-5 w-5" />
+                </button>
+              )}
+              <Button 
+                className="absolute right-1 top-1/2 transform -translate-y-1/2 h-12 px-6 bg-primary hover:bg-primary/90 text-white font-medium rounded-md"
+                onClick={() => {
+                  if (searchQuery) {
+                    // Handle search action
+                    toast({
+                      title: "Searching trips",
+                      description: `Showing trips for ${searchQuery}`,
+                    });
+                  }
+                }}
+                disabled={!searchQuery}
+              >
+                Search Trips
+              </Button>
+            </div>
+            
+            {/* Dropdown */}
+            {showDropdown && (
+              <div className="absolute z-10 w-full mt-1 bg-white rounded-md shadow-lg max-h-60 overflow-auto">
+                <div className="py-1">
+                  {filteredDestinations.length > 0 ? (
+                    filteredDestinations.map((destination) => (
+                      <button
+                        key={destination.id}
+                        className="w-full text-left px-4 py-2 text-gray-800 hover:bg-gray-100"
+                        onClick={() => selectDestination(destination.name)}
+                      >
+                        {destination.name}
+                      </button>
+                    ))
+                  ) : (
+                    <div className="px-4 py-2 text-gray-500">No destinations found</div>
+                  )}
+                </div>
+              </div>
+            )}
+          </div>
         </div>
       </section>
 
@@ -68,7 +207,7 @@ export default function Contact() {
           {/* Contact Information */}
           <div className="lg:col-span-1 space-y-8">
             {/* Contact Cards */}
-            <Card>
+            {/* <Card>
               <CardContent className="p-6">
                 <div className="flex items-center space-x-3 mb-4">
                   <div className="w-12 h-12 bg-gradient-primary rounded-full flex items-center justify-center">
@@ -80,12 +219,10 @@ export default function Contact() {
                   </div>
                 </div>
                 <div className="space-y-2">
-                  <p className="text-foreground font-medium">+91 98765 43210</p>
-                  <p className="text-foreground">+91 87654 32109</p>
-                  <p className="text-sm text-muted-foreground">24/7 Emergency: +91 76543 21098</p>
+                  <p className="text-foreground">{WHATSAPP.displayNumber}</p>
                 </div>
               </CardContent>
-            </Card>
+            </Card> */}
 
             <Card>
               <CardContent className="p-6">
@@ -100,7 +237,7 @@ export default function Contact() {
                 </div>
                 <div className="space-y-1">
                   <p className="text-foreground">info@duniyarides.com</p>
-                  <p className="text-foreground">bookings@duniyarides.com</p>
+                  <p className="text-foreground">sales@duniyarides.com</p>
                   <p className="text-foreground">support@duniyarides.com</p>
                 </div>
               </CardContent>
@@ -146,19 +283,24 @@ export default function Contact() {
             </Card>
 
             {/* WhatsApp */}
-            <Card className="bg-forest-green text-white">
+            <Card className="bg-gradient-to-br from-green-600 to-green-700 text-white border-0 shadow-lg">
               <CardContent className="p-6">
-                <div className="flex items-center space-x-3 mb-4">
-                  <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center">
-                    <MessageCircle className="h-6 w-6 text-white" />
+                <div className="flex items-center space-x-3 mb-6">
+                  <div className="w-14 h-14 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm">
+                    <MessageCircle className="h-7 w-7 text-white" />
                   </div>
                   <div>
-                    <h3 className="font-semibold">WhatsApp</h3>
-                    <p className="text-sm text-white/80">Quick chat support</p>
+                    <h3 className="font-bold text-xl">WhatsApp</h3>
+                    <p className="text-sm text-white/90">Quick chat support</p>
                   </div>
                 </div>
-                <Button className="w-full bg-white text-forest-green hover:bg-white/90">
-                  <MessageCircle className="mr-2 h-4 w-4" />
+                <Button 
+                  className="w-full bg-white text-green-700 hover:bg-white/90 hover:shadow-md transition-all duration-200 py-6 text-base font-medium rounded-lg"
+                  onClick={() => {
+                    openWhatsAppWithText('');
+                  }}
+                >
+                  <MessageCircle className="mr-2 h-5 w-5" />
                   Chat on WhatsApp
                 </Button>
               </CardContent>
@@ -194,7 +336,7 @@ export default function Contact() {
 
                   <div className="space-y-2">
                     <Label htmlFor="subject">Subject *</Label>
-                    <Input id="subject" name="subject" required placeholder="What is this regarding?" />
+                    <Input id="subject" name="subject" required placeholder="Where do you want to travel next?" />
                   </div>
 
                   <div className="space-y-2">
@@ -203,7 +345,7 @@ export default function Contact() {
                       id="message" 
                       name="message" 
                       required
-                      placeholder="Tell us how we can help you..."
+                      placeholder="Let us help you plan your next adventure. Provide us as much details as possible about your interests and preferences."
                       rows={6}
                     />
                   </div>

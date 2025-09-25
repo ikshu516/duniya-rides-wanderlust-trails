@@ -1,0 +1,314 @@
+{
+  "passed": [
+    {
+      "destination": "goa",
+      "url": "http://localhost:8080/destinations/goa",
+      "totalImages": 7
+    },
+    {
+      "destination": "manali",
+      "url": "http://localhost:8080/destinations/manali",
+      "totalImages": 7
+    },
+    {
+      "destination": "jaipur",
+      "url": "http://localhost:8080/destinations/jaipur",
+      "totalImages": 7
+    },
+    {
+      "destination": "kashmir",
+      "url": "http://localhost:8080/destinations/kashmir",
+      "totalImages": 6
+    },
+    {
+      "destination": "rajasthan",
+      "url": "http://localhost:8080/destinations/rajasthan",
+      "totalImages": 6
+    }
+  ],
+  "failed": [
+    {
+      "destination": "delhi",
+      "url": "http://localhost:8080/destinations/delhi",
+      "brokenImages": [
+        {
+          "src": "https://images.unsplash.com/photo-1622542796158-c088b8119db7?w=600&h=400&fit=crop",
+          "alt": "Red Fort",
+          "className": "w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+        }
+      ],
+      "heroImageLoaded": true,
+      "totalImages": 7
+    },
+    {
+      "destination": "rishikesh",
+      "url": "http://localhost:8080/destinations/rishikesh",
+      "brokenImages": [
+        {
+          "src": "https://images.unsplash.com/photo-1601390395693-364c0e22031b?w=600&h=400&fit=crop",
+          "alt": "Ram Jhula",
+          "className": "w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+        },
+        {
+          "src": "https://images.unsplash.com/photo-1603984042729-c9e5a2b8f7f1?w=600&h=400&fit=crop",
+          "alt": "Beatles Ashram",
+          "className": "w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+        },
+        {
+          "src": "https://images.unsplash.com/photo-1620766182966-c09770a8e424?w=600&h=400&fit=crop",
+          "alt": "Neelkanth Mahadev Temple",
+          "className": "w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+        }
+      ],
+      "heroImageLoaded": true,
+      "totalImages": 7
+    },
+    {
+      "destination": "amritsar",
+      "url": "http://localhost:8080/destinations/amritsar",
+      "brokenImages": [
+        {
+          "src": "https://images.unsplash.com/photo-1609947017136-27dca3e5e7ce?w=600&h=400&fit=crop",
+          "alt": "Jallianwala Bagh",
+          "className": "w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+        },
+        {
+          "src": "https://images.unsplash.com/photo-1623401620116-3277b7046a4f?w=600&h=400&fit=crop",
+          "alt": "Wagah Border",
+          "className": "w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+        },
+        {
+          "src": "https://images.unsplash.com/photo-1633358805510-f96b08f7381b?w=600&h=400&fit=crop",
+          "alt": "Partition Museum",
+          "className": "w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+        }
+      ],
+      "heroImageLoaded": true,
+      "totalImages": 7
+    },
+    {
+      "destination": "varanasi",
+      "url": "http://localhost:8080/destinations/varanasi",
+      "brokenImages": [
+        {
+          "src": "https://images.unsplash.com/photo-1627894007069-85de53d8c2ab?w=600&h=400&fit=crop",
+          "alt": "Kashi Vishwanath Temple",
+          "className": "w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+        },
+        {
+          "src": "https://images.unsplash.com/photo-1634645894663-4ae0fd00e9f0?w=600&h=400&fit=crop",
+          "alt": "Sarnath",
+          "className": "w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+        },
+        {
+          "src": "https://images.unsplash.com/photo-1590424696525-cd7e2f263c20?w=600&h=400&fit=crop",
+          "alt": "Banaras Hindu University",
+          "className": "w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+        },
+        {
+          "src": "https://images.unsplash.com/photo-1603298111314-2b2bceb23322?w=600&h=400&fit=crop",
+          "alt": "Manikarnika Ghat",
+          "className": "w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+        }
+      ],
+      "heroImageLoaded": true,
+      "totalImages": 7
+    },
+    {
+      "destination": "agra",
+      "url": "http://localhost:8080/destinations/agra",
+      "brokenImages": [
+        {
+          "src": "https://images.unsplash.com/photo-1614947227018-cd5c96255b57?w=600&h=400&fit=crop",
+          "alt": "Fatehpur Sikri",
+          "className": "w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+        },
+        {
+          "src": "https://images.unsplash.com/photo-1623134291791-d80c0b93e1ef?w=600&h=400&fit=crop",
+          "alt": "Mehtab Bagh",
+          "className": "w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+        }
+      ],
+      "heroImageLoaded": true,
+      "totalImages": 7
+    },
+    {
+      "destination": "kerala",
+      "url": "http://localhost:8080/destinations/kerala",
+      "brokenImages": [
+        {
+          "src": "https://images.unsplash.com/photo-1529418044304-1c0ffb7098b3?w=600&h=400&fit=crop",
+          "alt": "Munnar Tea Gardens",
+          "className": "w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+        }
+      ],
+      "heroImageLoaded": true,
+      "totalImages": 6
+    },
+    {
+      "destination": "ooty",
+      "url": "http://localhost:8080/destinations/ooty",
+      "brokenImages": [
+        {
+          "src": "https://images.unsplash.com/photo-1566221857770-508d35ee2b5d?w=600&h=400&fit=crop",
+          "alt": "Nilgiri Mountain Railway",
+          "className": "w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+        },
+        {
+          "src": "https://images.unsplash.com/photo-1580886563781-1f8402ce4e5b?w=600&h=400&fit=crop",
+          "alt": "Ooty Lake",
+          "className": "w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+        },
+        {
+          "src": "https://images.unsplash.com/photo-1580975510122-498c9f30b22f?w=600&h=400&fit=crop",
+          "alt": "Rose Garden",
+          "className": "w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+        }
+      ],
+      "heroImageLoaded": true,
+      "totalImages": 7
+    },
+    {
+      "destination": "mysore",
+      "url": "http://localhost:8080/destinations/mysore",
+      "brokenImages": [
+        {
+          "src": "https://images.unsplash.com/photo-1568750524666-e0c7a1ad9cd1?w=600&h=400&fit=crop",
+          "alt": "Brindavan Gardens",
+          "className": "w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+        }
+      ],
+      "heroImageLoaded": true,
+      "totalImages": 7
+    },
+    {
+      "destination": "darjeeling",
+      "url": "http://localhost:8080/destinations/darjeeling",
+      "brokenImages": [
+        {
+          "src": "https://images.unsplash.com/photo-1566221857770-508d35ee2b5d?w=600&h=400&fit=crop",
+          "alt": "Darjeeling Himalayan Railway",
+          "className": "w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+        },
+        {
+          "src": "https://images.unsplash.com/photo-1626972308491-6b05db73903f?w=600&h=400&fit=crop",
+          "alt": "Mall Road",
+          "className": "w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+        }
+      ],
+      "heroImageLoaded": true,
+      "totalImages": 7
+    },
+    {
+      "destination": "shimla",
+      "url": "http://localhost:8080/destinations/shimla",
+      "brokenImages": [
+        {
+          "src": "https://images.unsplash.com/photo-1626972308491-6b05db73903f?w=600&h=400&fit=crop",
+          "alt": "Mall Road",
+          "className": "w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+        },
+        {
+          "src": "https://images.unsplash.com/photo-1623401560023-692e5ad76ac7?w=600&h=400&fit=crop",
+          "alt": "Jakhu Temple",
+          "className": "w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+        },
+        {
+          "src": "https://images.unsplash.com/photo-1597167081301-fa4f5e485a79?w=600&h=400&fit=crop",
+          "alt": "Christ Church",
+          "className": "w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+        },
+        {
+          "src": "https://images.unsplash.com/photo-1602421652578-27570b1d2f6f?w=600&h=400&fit=crop",
+          "alt": "Kufri",
+          "className": "w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+        }
+      ],
+      "heroImageLoaded": true,
+      "totalImages": 7
+    },
+    {
+      "destination": "udaipur",
+      "url": "http://localhost:8080/destinations/udaipur",
+      "brokenImages": [
+        {
+          "src": "https://images.unsplash.com/photo-1597652204624-6da6604b2c8e?w=600&h=400&fit=crop",
+          "alt": "Fateh Sagar Lake",
+          "className": "w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+        }
+      ],
+      "heroImageLoaded": true,
+      "totalImages": 7
+    },
+    {
+      "destination": "andaman",
+      "url": "http://localhost:8080/destinations/andaman",
+      "brokenImages": [
+        {
+          "src": "https://images.unsplash.com/photo-1590930754517-92ec40c33b64?w=600&h=400&fit=crop",
+          "alt": "Neil Island",
+          "className": "w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+        },
+        {
+          "src": "https://images.unsplash.com/photo-1617640706308-20ad8a383fb7?w=600&h=400&fit=crop",
+          "alt": "Ross Island",
+          "className": "w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+        }
+      ],
+      "heroImageLoaded": true,
+      "totalImages": 7
+    },
+    {
+      "destination": "sikkim",
+      "url": "http://localhost:8080/destinations/sikkim",
+      "brokenImages": [
+        {
+          "src": "https://images.unsplash.com/photo-1601377383565-2c54fe6e76a1?w=600&h=400&fit=crop",
+          "alt": "Rumtek Monastery",
+          "className": "w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+        },
+        {
+          "src": "https://images.unsplash.com/photo-1600948836101-f9c0f5a5b630?w=600&h=400&fit=crop",
+          "alt": "Nathu La Pass",
+          "className": "w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+        },
+        {
+          "src": "https://images.unsplash.com/photo-1583417319070-2f8f09b0b5a4?w=600&h=400&fit=crop",
+          "alt": "Yumthang Valley",
+          "className": "w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+        },
+        {
+          "src": "https://images.unsplash.com/photo-1586074137025-c04f8a57b626?w=600&h=400&fit=crop",
+          "alt": "Gurudongmar Lake",
+          "className": "w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+        },
+        {
+          "src": "https://images.unsplash.com/photo-1602421652578-27570b1d2f6f?w=600&h=400&fit=crop",
+          "alt": "Pelling",
+          "className": "w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+        }
+      ],
+      "heroImageLoaded": true,
+      "totalImages": 7
+    },
+    {
+      "destination": "ladakh",
+      "url": "http://localhost:8080/destinations/ladakh",
+      "brokenImages": [
+        {
+          "src": "https://images.unsplash.com/photo-1601296160691-20b42d3ec5ae?w=600&h=400&fit=crop",
+          "alt": "Nubra Valley",
+          "className": "w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+        },
+        {
+          "src": "https://images.unsplash.com/photo-1609003292404-dc0e82b071e3?w=600&h=400&fit=crop",
+          "alt": "Thiksey Monastery",
+          "className": "w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+        }
+      ],
+      "heroImageLoaded": true,
+      "totalImages": 7
+    }
+  ],
+  "errors": []
+}

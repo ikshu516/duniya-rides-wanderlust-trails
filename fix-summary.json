@@ -1,0 +1,11 @@
+{
+  "timestamp": "2025-09-01T07:16:27.213Z",
+  "totalFixes": 4,
+  "fixedAttractions": [
+    "Sonamarg",
+    "Munnar Tea Gardens",
+    "Taj Mahal",
+    "Lotus Temple"
+  ],
+  "backupPath": "./src/data/destinationsData.backup2.ts"
+}

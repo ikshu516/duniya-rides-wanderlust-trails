@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -8,6 +8,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { MapPin, CheckCircle, Phone, DollarSign, Clock, Users } from "lucide-react";
 import Layout from "@/components/Layout";
 import { useToast } from "@/hooks/use-toast";
+import { openWhatsAppWithText, WHATSAPP } from "@/lib/whatsapp";
+import { getPendingSelection, clearPendingSelection, saveLead } from "@/lib/lead";
 
 const heroImages = [
   "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=1920&h=1080&fit=crop",
@@ -15,35 +17,58 @@ const heroImages = [
   "https://images.unsplash.com/photo-1499856871958-5b9627545d1a?w=1920&h=1080&fit=crop"
 ];
 
+const popularDestinations = [
+  { value: "goa", label: "Goa" },
+  { value: "manali", label: "Manali" },
+  { value: "jaipur", label: "Jaipur" },
+  { value: "kashmir", label: "Kashmir" },
+  { value: "kerala", label: "Kerala" },
+  { value: "rajasthan", label: "Rajasthan" },
+  { value: "agra", label: "Agra" },
+  { value: "delhi", label: "Delhi" },
+  { value: "mumbai", label: "Mumbai" },
+  { value: "udaipur", label: "Udaipur" },
+  { value: "shimla", label: "Shimla" },
+  { value: "ooty", label: "Ooty" },
+  { value: "mysore", label: "Mysore" },
+  { value: "darjeeling", label: "Darjeeling" },
+  { value: "rishikesh", label: "Rishikesh" },
+  { value: "amritsar", label: "Amritsar" },
+  { value: "varanasi", label: "Varanasi" },
+  { value: "ladakh", label: "Ladakh" },
+  { value: "andaman", label: "Andaman & Nicobar" },
+  { value: "sikkim", label: "Sikkim" }
+];
+
 const destinations = [
   {
     name: "Goa",
-    image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop",
+    image: "https://upload.wikimedia.org/wikipedia/commons/e/ed/Palolem_beach.jpg",
     description: "Pristine beaches and vibrant nightlife"
   },
   {
     name: "Manali",
-    image: "https://images.unsplash.com/photo-1506765515384-028b60a970df?w=400&h=300&fit=crop",
+    image: "https://upload.wikimedia.org/wikipedia/commons/b/b5/Solang_Valley%2C_Manali.jpg",
     description: "Snow-capped mountains and adventure sports"
   },
   {
     name: "Jaipur",
-    image: "https://images.unsplash.com/photo-1561361513-2d000314c8e4?w=400&h=300&fit=crop",
+    image: "https://upload.wikimedia.org/wikipedia/commons/4/41/East_facade_Hawa_Mahal_Jaipur_from_ground_level_%28July_2022%29_-_img_01.jpg",
     description: "Royal palaces and rich heritage"
   },
   {
     name: "Kashmir",
-    image: "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=400&h=300&fit=crop",
+    image: "https://upload.wikimedia.org/wikipedia/commons/1/17/Dal_Lake%2C_Srinagar%2C_Jammu_and_Kashmir.jpg",
     description: "Paradise on earth with scenic valleys"
   },
   {
     name: "Kerala",
-    image: "https://images.unsplash.com/photo-1548013146-72479768bada?w=400&h=300&fit=crop",
+    image: "https://upload.wikimedia.org/wikipedia/commons/3/31/Houseboat_on_Alleppey_backwaters_%28Kerala%2C_India_2023%29_%2852704323376%29.jpg",
     description: "Backwaters and tropical beauty"
   },
   {
     name: "Rajasthan",
-    image: "https://images.unsplash.com/photo-1499856871958-5b9627545d1a?w=400&h=300&fit=crop",
+    image: "https://upload.wikimedia.org/wikipedia/commons/8/88/Sand_dunes_of_thar_desert.jpg",
     description: "Desert landscapes and grand forts"
   }
 ];
@@ -73,8 +98,14 @@ const whyChooseUs = [
 
 export default function Home() {
   const { toast } = useToast();
+  const navigate = useNavigate();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [destination, setDestination] = useState("");
+  // Quick plan form state (to ensure reliable submission and WhatsApp message)
+  const [qpDestination, setQpDestination] = useState("");
+  const [qpDays, setQpDays] = useState("");
+  const [qpBudget, setQpBudget] = useState("");
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -88,34 +119,81 @@ export default function Home() {
     setIsSubmitting(true);
 
     const formData = new FormData(e.currentTarget);
-    const data = {
-      name: formData.get('name'),
-      destination: formData.get('destination'),
-      days: formData.get('days'),
-      budget: formData.get('budget'),
-      phone: formData.get('phone')
-    };
+    const name = (formData.get('name') || '').toString();
+    const email = (formData.get('email') || '').toString();
+    const phone = (formData.get('phone') || '').toString();
+    // Pull from hidden inputs (kept in sync with Selects)
+    const dest = (formData.get('destination') || qpDestination || '').toString();
+    const days = (formData.get('days') || qpDays || '').toString();
+    const budget = (formData.get('budget') || qpBudget || '').toString();
 
     try {
-      // Simulate API call to send email to admin@duniyarides.com
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      
-      console.log('Quick plan data:', data);
-      
+      const pending = getPendingSelection();
+      const formattedMessage =
+        `*New Quick Plan Request*%0A%0A` +
+        (pending ? (
+          `*Selected Package:* ${encodeURIComponent(pending.packageName || pending.packageId)}%0A` +
+          (pending.destinationName ? `*For Destination:* ${encodeURIComponent(pending.destinationName)}%0A` : '') +
+          (pending.packageType ? `*Package Type:* ${encodeURIComponent(pending.packageType)}%0A` : '') +
+          (pending.packageDuration ? `*Duration:* ${encodeURIComponent(pending.packageDuration)}%0A` : '') +
+          (pending.packagePrice ? `*Package Price:* ₹${pending.packagePrice.min.toLocaleString()} - ₹${pending.packagePrice.max.toLocaleString()} per person per night%0A` : '') +
+          `*Package ID:* ${encodeURIComponent(pending.packageId)}%0A%0A`
+        ) : '') +
+        `*Name:* ${encodeURIComponent(name)}%0A` +
+        `*Email:* ${encodeURIComponent(email)}%0A` +
+        `*Phone:* ${encodeURIComponent(phone)}%0A` +
+        `*Destination:* ${encodeURIComponent(dest)}%0A` +
+        `*Days:* ${encodeURIComponent(days)}%0A` +
+        `*Budget:* ${encodeURIComponent(budget)}`;
+      // Register lead locally
+      saveLead('home-quick-plan', { name, email, phone, dest, days, budget, selectedPackage: pending });
+      openWhatsAppWithText(formattedMessage);
+      clearPendingSelection();
+
       toast({
-        title: "Request Submitted!",
-        description: "We'll contact you within 2 hours with trip options.",
+        title: 'Opening WhatsApp...',
+        description: "You'll be redirected to WhatsApp to send your request.",
       });
-      
+
       e.currentTarget.reset();
+      // Clear controlled state
+      setQpDestination("");
+      setQpDays("");
+      setQpBudget("");
     } catch (error) {
       toast({
-        title: "Submission Failed",
-        description: "Please try again or contact us directly.",
-        variant: "destructive",
+        title: 'Error',
+        description: 'Could not open WhatsApp. Please try again or contact us directly.',
+        variant: 'destructive',
       });
     } finally {
       setIsSubmitting(false);
+    }
+  };
+
+  const handleSearch = () => {
+    if (destination) {
+      // Convert destination name to ID format for routing
+      const destinationId = destination.toLowerCase().replace(/[^a-z0-9]/g, '');
+      
+      // Check if destination exists in our popular destinations
+      const foundDestination = popularDestinations.find(dest => 
+        dest.label.toLowerCase() === destination.toLowerCase()
+      );
+      
+      if (foundDestination) {
+        navigate(`/destinations/${foundDestination.value}`);
+      } else {
+        toast({
+          title: "Destination Not Found",
+          description: "Please select from available destinations or use the search feature.",
+        });
+      }
+    } else {
+      toast({
+        title: "Please Select Destination",
+        description: "Choose a destination to view packages and details.",
+      });
     }
   };
 
@@ -165,21 +243,29 @@ export default function Home() {
               <div className="text-left">
                 <label className="block text-sm font-medium text-white/80 mb-2">Destination</label>
                 <input 
-                  type="text" 
+                  type="text"
+                  list="destinations-list"
                   placeholder="Where to?" 
-                  className="w-full bg-white/20 backdrop-blur-sm border border-white/30 rounded-lg px-4 py-3 text-white placeholder-white/60 focus:ring-2 focus:ring-primary focus:border-transparent"
+                  value={destination}
+                  onChange={(e) => setDestination(e.target.value)}
+                  className="w-full h-12 bg-white/20 backdrop-blur-sm border border-white/30 rounded-lg px-4 text-white placeholder-white/60 focus:ring-2 focus:ring-primary focus:border-transparent"
                 />
+                <datalist id="destinations-list">
+                  {popularDestinations.map((dest) => (
+                    <option key={dest.value} value={dest.label} />
+                  ))}
+                </datalist>
               </div>
               <div className="text-left">
                 <label className="block text-sm font-medium text-white/80 mb-2">Travel Date</label>
                 <input 
                   type="date" 
-                  className="w-full bg-white/20 backdrop-blur-sm border border-white/30 rounded-lg px-4 py-3 text-white focus:ring-2 focus:ring-primary focus:border-transparent"
+                  className="w-full h-12 bg-white/20 backdrop-blur-sm border border-white/30 rounded-lg px-4 text-white focus:ring-2 focus:ring-primary focus:border-transparent"
                 />
               </div>
               <div className="text-left">
                 <label className="block text-sm font-medium text-white/80 mb-2">Duration</label>
-                <select className="w-full bg-white/20 backdrop-blur-sm border border-white/30 rounded-lg px-4 py-3 text-white focus:ring-2 focus:ring-primary focus:border-transparent">
+                <select className="w-full h-12 bg-white/20 backdrop-blur-sm border border-white/30 rounded-lg px-4 text-white focus:ring-2 focus:ring-primary focus:border-transparent">
                   <option value="">Days</option>
                   <option value="3-5">3-5 Days</option>
                   <option value="6-10">6-10 Days</option>
@@ -187,8 +273,11 @@ export default function Home() {
                 </select>
               </div>
               <div className="flex items-end">
-                <Button asChild className="w-full bg-gradient-saffron hover:shadow-glow text-white font-semibold py-3 rounded-lg transition-all duration-300">
-                  <Link to="/plan-trip">🔍 Search Trips</Link>
+                <Button 
+                  onClick={handleSearch}
+                  className="w-full h-12 bg-white text-secondary hover:bg-white/90 font-semibold rounded-lg transition-all duration-300 border-2 border-white flex items-center justify-center"
+                >
+                  🔍 Search Trips
                 </Button>
               </div>
             </div>
@@ -229,23 +318,35 @@ export default function Home() {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {destinations.map((destination) => (
-              <Card key={destination.name} className="group cursor-pointer overflow-hidden hover:shadow-hover transition-all duration-300">
-                <div className="relative h-64">
-                  <img
-                    src={destination.image}
-                    alt={destination.name}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-secondary/80 via-transparent to-transparent">
-                    <div className="absolute bottom-4 left-4 right-4 text-white">
-                      <h3 className="text-2xl font-bold mb-2">{destination.name}</h3>
-                      <p className="text-sm opacity-90">{destination.description}</p>
+            {destinations.map((destination) => {
+              const slug = destination.name.toLowerCase().replace(/[^a-z0-9]/g, '');
+              return (
+                <Link key={destination.name} to={`/destinations/${slug}`} className="block">
+                  <Card className="group cursor-pointer overflow-hidden hover:shadow-hover transition-all duration-300">
+                    <div className="relative h-64">
+                      <img
+                        src={destination.image}
+                        alt={destination.name}
+                        loading="lazy"
+                        onError={(e) => {
+                          const img = e.currentTarget as HTMLImageElement;
+                          if ((img as any).dataset.fallbackApplied) return;
+                          img.src = '/placeholder.svg';
+                          (img as any).dataset.fallbackApplied = 'true';
+                        }}
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-secondary/80 via-transparent to-transparent">
+                        <div className="absolute bottom-4 left-4 right-4 text-white">
+                          <h3 className="text-2xl font-bold mb-2">{destination.name}</h3>
+                          <p className="text-sm opacity-90">{destination.description}</p>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </div>
-              </Card>
-            ))}
+                  </Card>
+                </Link>
+              );
+            })}
           </div>
 
           <div className="text-center mt-12">
@@ -308,25 +409,30 @@ export default function Home() {
                     <Input id="name" name="name" required placeholder="Enter your name" />
                   </div>
                   <div className="space-y-2">
+                    <Label htmlFor="email">Email</Label>
+                    <Input id="email" name="email" type="email" required placeholder="your.email@example.com" />
+                  </div>
+                  <div className="space-y-2">
                     <Label htmlFor="destination">Destination</Label>
-                    <Select name="destination" required>
+                    <Select name="destination" required onValueChange={(v) => setQpDestination(v)}>
                       <SelectTrigger>
                         <SelectValue placeholder="Choose destination" />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="goa">Goa</SelectItem>
-                        <SelectItem value="manali">Manali</SelectItem>
-                        <SelectItem value="jaipur">Jaipur</SelectItem>
-                        <SelectItem value="kashmir">Kashmir</SelectItem>
-                        <SelectItem value="kerala">Kerala</SelectItem>
-                        <SelectItem value="rajasthan">Rajasthan</SelectItem>
-                        <SelectItem value="other">Other</SelectItem>
+                        {popularDestinations.map((dest) => (
+                          <SelectItem key={dest.value} value={dest.value}>
+                            {dest.label}
+                          </SelectItem>
+                        ))}
+                        <SelectItem value="other">Other (specify in message)</SelectItem>
                       </SelectContent>
                     </Select>
+                    {/* Hidden input to ensure value is included in FormData */}
+                    <input type="hidden" name="destination" value={qpDestination} />
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="days">Number of Days</Label>
-                    <Select name="days" required>
+                    <Select name="days" required onValueChange={(v) => setQpDays(v)}>
                       <SelectTrigger>
                         <SelectValue placeholder="Select days" />
                       </SelectTrigger>
@@ -337,10 +443,11 @@ export default function Home() {
                         <SelectItem value="15+">15+ Days</SelectItem>
                       </SelectContent>
                     </Select>
+                    <input type="hidden" name="days" value={qpDays} />
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="budget">Budget Range</Label>
-                    <Select name="budget" required>
+                    <Select name="budget" required onValueChange={(v) => setQpBudget(v)}>
                       <SelectTrigger>
                         <SelectValue placeholder="Select budget" />
                       </SelectTrigger>
@@ -351,10 +458,11 @@ export default function Home() {
                         <SelectItem value="above-100k">Above ₹1,00,000</SelectItem>
                       </SelectContent>
                     </Select>
+                    <input type="hidden" name="budget" value={qpBudget} />
                   </div>
                   <div className="space-y-2 md:col-span-2">
                     <Label htmlFor="phone">Phone Number</Label>
-                    <Input id="phone" name="phone" type="tel" required placeholder="+91 98765 43210" />
+                    <Input id="phone" name="phone" type="tel" required placeholder={WHATSAPP.displayNumber} />
                   </div>
                 </div>
                 <Button 

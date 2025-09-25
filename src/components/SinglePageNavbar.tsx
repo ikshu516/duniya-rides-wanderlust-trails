@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Menu, X, Phone, Mail } from "lucide-react";
+import { WHATSAPP } from "@/lib/whatsapp";
 import { Button } from "@/components/ui/button";
 
 const navigation = [
@@ -30,7 +31,7 @@ export default function SinglePageNavbar() {
           <div className="flex items-center space-x-4">
             <div className="flex items-center space-x-1">
               <Phone className="h-3 w-3" />
-              <span>+91 98765 43210</span>
+              <span>{WHATSAPP.displayNumber}</span>
             </div>
             <div className="flex items-center space-x-1">
               <Mail className="h-3 w-3" />

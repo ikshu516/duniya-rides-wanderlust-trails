@@ -182,35 +182,6 @@ export default function Testimonials() {
         </div>
       </section>
 
-      {/* Video Testimonials Section */}
-      <section className="py-20 bg-warm-sand">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Video Stories
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Watch our travelers share their incredible India experiences in their own words.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[1, 2, 3].map((video) => (
-              <Card key={video} className="group overflow-hidden hover:shadow-warm transition-all duration-300">
-                <div className="relative h-48 bg-gradient-primary flex items-center justify-center">
-                  <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300 cursor-pointer">
-                    <div className="w-0 h-0 border-l-6 border-l-white border-t-4 border-t-transparent border-b-4 border-b-transparent ml-1" />
-                  </div>
-                  <div className="absolute bottom-4 left-4 text-white">
-                    <h3 className="font-semibold">Kerala Adventure</h3>
-                    <p className="text-sm text-white/80">2:45 mins</p>
-                  </div>
-                </div>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Reviews Platforms */}
       <section className="py-16 bg-background">
@@ -269,7 +240,7 @@ export default function Testimonials() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-primary text-white">
+      <section className="py-20 bg-gradient-to-r from-amber-600 to-amber-700 text-white">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             Ready to Create Your Own Story?
@@ -277,7 +248,12 @@ export default function Testimonials() {
           <p className="text-xl mb-8 text-white/90">
             Join hundreds of satisfied travelers who have discovered the magic of India with us.
           </p>
-          <Button size="lg" variant="outline" asChild className="border-white text-white hover:bg-white hover:text-primary">
+          <Button 
+            size="lg" 
+            variant="outline" 
+            asChild 
+            className="bg-white text-amber-700 border-2 border-white hover:bg-transparent hover:text-white hover:border-white transition-all duration-300 px-8 py-6 text-lg font-semibold"
+          >
             <Link to="/plan-my-trip">
               Start Planning Your Trip <ArrowRight className="ml-2 h-5 w-5" />
             </Link>

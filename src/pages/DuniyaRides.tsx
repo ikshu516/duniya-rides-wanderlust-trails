@@ -9,6 +9,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { useToast } from "@/hooks/use-toast";
 import SinglePageNavbar from "@/components/SinglePageNavbar";
 import Footer from "@/components/Footer";
+import { openWhatsAppWithText, WHATSAPP } from "@/lib/whatsapp";
+import { getPendingSelection, clearPendingSelection, saveLead } from "@/lib/lead";
 import heroImage from "@/assets/hero-bg.jpg";
 
 const destinations = [
@@ -103,6 +105,7 @@ const testimonials = [
 export default function DuniyaRides() {
   const [formData, setFormData] = useState({
     name: "",
+    email: "",
     destination: "",
     days: "",
     budget: "",
@@ -112,22 +115,40 @@ export default function DuniyaRides() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
-    // Simulate form submission to admin@duniyarides.com
-    console.log("Form data:", formData);
-    
-    toast({
-      title: "Trip Request Submitted!",
-      description: "We'll contact you within 24 hours with a customized itinerary.",
-    });
-    
-    setFormData({
-      name: "",
-      destination: "",
-      days: "",
-      budget: "",
-      phone: ""
-    });
+    const pending = getPendingSelection();
+    const formattedMessage =
+      `*New Single-Page Trip Request*%0A%0A` +
+      (pending ? (
+        `*Selected Package:* ${encodeURIComponent(pending.packageName || pending.packageId)}%0A` +
+        (pending.destinationName ? `*For Destination:* ${encodeURIComponent(pending.destinationName)}%0A` : '') +
+        (pending.packageType ? `*Package Type:* ${encodeURIComponent(pending.packageType)}%0A` : '') +
+        (pending.packageDuration ? `*Duration:* ${encodeURIComponent(pending.packageDuration)}%0A` : '') +
+        (pending.packagePrice ? `*Package Price:* ₹${pending.packagePrice.min.toLocaleString()} - ₹${pending.packagePrice.max.toLocaleString()} per person per night%0A` : '') +
+        `*Package ID:* ${encodeURIComponent(pending.packageId)}%0A%0A`
+      ) : '') +
+      `*Name:* ${encodeURIComponent(formData.name)}%0A` +
+      `*Email:* ${encodeURIComponent(formData.email)}%0A` +
+      `*Destination:* ${encodeURIComponent(formData.destination)}%0A` +
+      `*Days:* ${encodeURIComponent(formData.days)}%0A` +
+      `*Budget:* ${encodeURIComponent(formData.budget)}%0A` +
+      `*Phone:* ${encodeURIComponent(formData.phone)}`;
+
+    try {
+      saveLead('duniyarides', { ...formData, selectedPackage: pending });
+      openWhatsAppWithText(formattedMessage);
+      clearPendingSelection();
+      toast({
+        title: "Opening WhatsApp...",
+        description: "You'll be redirected to WhatsApp to send your request.",
+      });
+      setFormData({ name: "", email: "", destination: "", days: "", budget: "", phone: "" });
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Could not open WhatsApp. Please try again or contact us directly.",
+        variant: "destructive",
+      });
+    }
   };
 
   return (
@@ -187,6 +208,19 @@ export default function DuniyaRides() {
                     onChange={(e) => setFormData({...formData, name: e.target.value})}
                     required
                     className="mt-1"
+                  />
+                </div>
+
+                <div>
+                  <Label htmlFor="email">Email Address *</Label>
+                  <Input
+                    id="email"
+                    type="email"
+                    value={formData.email}
+                    onChange={(e) => setFormData({...formData, email: e.target.value})}
+                    required
+                    className="mt-1"
+                    placeholder="your.email@example.com"
                   />
                 </div>
 
@@ -256,7 +290,7 @@ export default function DuniyaRides() {
                     onChange={(e) => setFormData({...formData, phone: e.target.value})}
                     required
                     className="mt-1"
-                    placeholder="+91 98765 43210"
+                    placeholder={WHATSAPP.displayNumber}
                   />
                 </div>
 
@@ -411,8 +445,7 @@ export default function DuniyaRides() {
                 <Phone className="h-6 w-6 text-primary mt-1" />
                 <div>
                   <h3 className="font-semibold mb-1">Phone</h3>
-                  <p className="text-muted-foreground">+91 98765 43210</p>
-                  <p className="text-muted-foreground">+91 87654 32109</p>
+                  <p className="text-muted-foreground">{WHATSAPP.displayNumber}</p>
                 </div>
               </div>
 
@@ -439,7 +472,12 @@ export default function DuniyaRides() {
               <div className="bg-warm-sand p-6 rounded-lg">
                 <h3 className="font-semibold mb-2">WhatsApp Support</h3>
                 <p className="text-muted-foreground mb-4">Chat with us instantly for quick queries</p>
-                <Button className="bg-gradient-primary">
+                <Button
+                  className="bg-gradient-primary"
+                  onClick={() => {
+                    openWhatsAppWithText('');
+                  }}
+                >
                   Chat on WhatsApp
                 </Button>
               </div>

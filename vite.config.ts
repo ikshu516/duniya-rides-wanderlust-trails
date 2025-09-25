@@ -19,4 +19,16 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ['react', 'react-dom', 'react-router-dom'],
+          ui: ['@radix-ui/react-slot', 'class-variance-authority'],
+          utils: ['lucide-react', '@tanstack/react-query'],
+        },
+      },
+    },
+    chunkSizeWarningLimit: 600, // Increase chunk size warning limit
+  },
 }));
