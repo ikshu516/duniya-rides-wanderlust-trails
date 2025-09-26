@@ -40,7 +40,7 @@ const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
-        <Router>
+        <Router basename="/duniya-rides-wanderlust-trails">
           <Toaster />
           <Sonner />
           <Layout>
