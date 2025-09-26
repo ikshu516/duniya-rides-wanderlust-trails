@@ -3,18 +3,18 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { Suspense, lazy, useEffect } from "react";
+import { useEffect } from "react";
 import Layout from "@/components/Layout";
 
-// Lazy load pages for better performance
-const Home = lazy(() => import("./pages/Home"));
-const PlanMyTrip = lazy(() => import("./pages/PlanMyTrip"));
-const Destinations = lazy(() => import("./pages/Destinations"));
-const DestinationDetail = lazy(() => import("./pages/DestinationDetail"));
-const Testimonials = lazy(() => import("./pages/Testimonials"));
-const Gallery = lazy(() => import("./pages/Gallery"));
-const Contact = lazy(() => import("./pages/Contact"));
-const About = lazy(() => import("./pages/About"));
+// Direct imports for testing - no lazy loading
+import Home from "./pages/Home";
+import PlanMyTrip from "./pages/PlanMyTrip";
+import Destinations from "./pages/Destinations";
+import DestinationDetail from "./pages/DestinationDetail";
+import Testimonials from "./pages/Testimonials";
+import Gallery from "./pages/Gallery";
+import Contact from "./pages/Contact";
+import About from "./pages/About";
 
 const queryClient = new QueryClient();
 
@@ -44,18 +44,16 @@ const App = () => {
           <Toaster />
           <Sonner />
           <Layout>
-            <Suspense fallback={<PageLoader />}>
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/plan-trip" element={<PlanMyTrip />} />
-                <Route path="/destinations" element={<Destinations />} />
-                <Route path="/destinations/:destinationId" element={<DestinationDetail />} />
-                <Route path="/testimonials" element={<Testimonials />} />
-                <Route path="/gallery" element={<Gallery />} />
-                <Route path="/contact" element={<Contact />} />
-                <Route path="/about" element={<About />} />
-              </Routes>
-            </Suspense>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/plan-trip" element={<PlanMyTrip />} />
+              <Route path="/destinations" element={<Destinations />} />
+              <Route path="/destinations/:destinationId" element={<DestinationDetail />} />
+              <Route path="/testimonials" element={<Testimonials />} />
+              <Route path="/gallery" element={<Gallery />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/about" element={<About />} />
+            </Routes>
           </Layout>
         </Router>
       </TooltipProvider>
