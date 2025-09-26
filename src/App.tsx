@@ -69,41 +69,63 @@ const App = () => {
     }
   }, []);
 
-  // ULTRA MINIMAL TEST - No Layout, no dependencies
+  // STEP 1: Add Router + Layout (but keep simple content)
   return (
-    <div style={{
-      minHeight: '100vh',
-      background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-      color: 'white',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      fontFamily: 'Arial, sans-serif',
-      padding: '20px'
-    }}>
-      <div style={{ textAlign: 'center' }}>
-        <h1 style={{ fontSize: '3rem', marginBottom: '20px', textShadow: '2px 2px 4px rgba(0,0,0,0.3)' }}>
-          🚀 Duniya Rides
-        </h1>
-        <p style={{ fontSize: '1.5rem', marginBottom: '30px', opacity: 0.9 }}>
-          React is working perfectly!
-        </p>
-        <div style={{
-          background: 'rgba(255,255,255,0.1)',
-          padding: '20px',
-          borderRadius: '10px',
-          backdropFilter: 'blur(10px)'
-        }}>
-          <p style={{ marginBottom: '10px' }}>✅ React app loaded</p>
-          <p style={{ marginBottom: '10px' }}>✅ Component mounted</p>
-          <p style={{ marginBottom: '10px' }}>✅ JavaScript executing</p>
-          <p style={{ marginBottom: '10px' }}>✅ CSS working</p>
-          <p style={{ fontSize: '0.9rem', opacity: 0.8, marginTop: '20px' }}>
-            If you see this, React is 100% working!
-          </p>
-        </div>
-      </div>
-    </div>
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <Router>
+          <Toaster />
+          <Sonner />
+          <Suspense fallback={<PageLoader />}>
+            <Routes>
+              <Route path="/" element={
+                <Layout>
+                  <div style={{
+                    minHeight: '80vh',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    padding: '20px'
+                  }}>
+                    <div style={{ textAlign: 'center' }}>
+                      <h1 style={{ 
+                        fontSize: '3rem', 
+                        marginBottom: '20px', 
+                        color: '#1f2937',
+                        fontWeight: 'bold'
+                      }}>
+                        🎉 Duniya Rides
+                      </h1>
+                      <p style={{ 
+                        fontSize: '1.5rem', 
+                        marginBottom: '30px', 
+                        color: '#6b7280' 
+                      }}>
+                        Layout + Router working!
+                      </p>
+                      <div style={{
+                        background: '#f3f4f6',
+                        padding: '20px',
+                        borderRadius: '10px',
+                        border: '1px solid #e5e7eb'
+                      }}>
+                        <p style={{ marginBottom: '10px', color: '#374151' }}>✅ Navigation bar loaded</p>
+                        <p style={{ marginBottom: '10px', color: '#374151' }}>✅ Footer loaded</p>
+                        <p style={{ marginBottom: '10px', color: '#374151' }}>✅ Router working</p>
+                        <p style={{ marginBottom: '10px', color: '#374151' }}>✅ Layout component working</p>
+                        <p style={{ fontSize: '0.9rem', color: '#6b7280', marginTop: '20px' }}>
+                          Next: Add Home component
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </Layout>
+              } />
+            </Routes>
+          </Suspense>
+        </Router>
+      </TooltipProvider>
+    </QueryClientProvider>
   );
 };
 
