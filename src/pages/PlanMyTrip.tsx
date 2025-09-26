@@ -6,7 +6,6 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { MapPin, Calendar, DollarSign, Users } from "lucide-react";
-import Layout from "@/components/Layout";
 import { useToast } from "@/hooks/use-toast";
 import { openWhatsAppWithText, WHATSAPP } from "@/lib/whatsapp";
 import { clearPendingSelection, getPendingSelection, saveLead } from "@/lib/lead";
@@ -168,7 +167,7 @@ export default function PlanMyTrip() {
 
   if (isSubmitted) {
     return (
-      <Layout>
+      <>
         <div className="min-h-screen bg-warm-sand py-20">
           <div className="max-w-2xl mx-auto px-4">
             <Card className="text-center">
@@ -199,12 +198,12 @@ export default function PlanMyTrip() {
             </Card>
           </div>
         </div>
-      </Layout>
+      </>
     );
   }
 
   return (
-    <Layout>
+    <>
       <div className="min-h-screen bg-warm-sand py-20">
         <div className="max-w-4xl mx-auto px-4">
           {/* Header */}
@@ -385,6 +384,6 @@ export default function PlanMyTrip() {
           </Card>
         </div>
       </div>
-    </Layout>
+    </>
   );
 }

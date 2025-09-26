@@ -2,12 +2,11 @@ import { Link } from "react-router-dom";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, MapPin, Clock, Star, Calendar } from "lucide-react";
-import Layout from "@/components/Layout";
 import { destinationsData } from "@/data/destinationsData";
 
 export default function Destinations() {
   return (
-    <Layout>
+    <>
       {/* Hero Section */}
       <section className="bg-gradient-hero text-white py-20">
         <div className="max-w-7xl mx-auto px-4 text-center">
@@ -106,6 +105,6 @@ export default function Destinations() {
           </Button>
         </div>
       </section>
-    </Layout>
+    </>
   );
 }

@@ -1,6 +1,5 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import Layout from '@/components/Layout';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -28,7 +27,7 @@ export default function DestinationDetail() {
 
   if (!destination) {
     return (
-      <Layout>
+      <>
         <div className="min-h-screen flex items-center justify-center bg-background">
           <div className="text-center">
             <h1 className="text-4xl font-bold text-foreground mb-4">Destination Not Found</h1>
@@ -36,7 +35,7 @@ export default function DestinationDetail() {
             <Button onClick={() => navigate('/')}>Return Home</Button>
           </div>
         </div>
-      </Layout>
+      </>
     );
   }
 
@@ -97,7 +96,7 @@ export default function DestinationDetail() {
   };
 
   return (
-    <Layout>
+    <>
       <div className="min-h-screen bg-background">
         {/* Hero Section */}
         <div className="relative h-96 overflow-hidden">
@@ -323,6 +322,6 @@ export default function DestinationDetail() {
           </Tabs>
         </div>
       </div>
-    </Layout>
+    </>
   );
 }

@@ -5,7 +5,6 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Phone, Mail, MapPin, Clock, MessageCircle, Send, Search, ChevronDown, X } from "lucide-react";
-import Layout from "@/components/Layout";
 import { openWhatsAppWithText, WHATSAPP } from "@/lib/whatsapp";
 import { getPendingSelection, clearPendingSelection, saveLead } from "@/lib/lead";
 import { useToast } from "@/hooks/use-toast";
@@ -130,7 +129,7 @@ export default function Contact() {
   };
 
   return (
-    <Layout>
+    <>
       {/* Hero Section */}
       <section className="bg-gradient-hero text-white py-20">
         <div className="max-w-7xl mx-auto px-4 text-center">
@@ -452,6 +451,6 @@ export default function Contact() {
           </div>
         </div>
       </section>
-    </Layout>
+    </>
   );
 }

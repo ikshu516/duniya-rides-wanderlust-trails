@@ -1,4 +1,3 @@
-import Layout from "@/components/Layout";
 import { Card } from "@/components/ui/card";
 import { Users, MapPin, Award, Heart } from "lucide-react";
 
@@ -67,7 +66,7 @@ const values = [
 
 export default function About() {
   return (
-    <Layout>
+    <>
       <div className="min-h-screen bg-background">
         {/* Hero Section */}
         <section className="relative py-32 bg-gradient-to-r from-primary/10 to-primary/5">
@@ -214,6 +213,6 @@ export default function About() {
           </div>
         </section>
       </div>
-    </Layout>
+    </>
   );
 }

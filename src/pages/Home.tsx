@@ -6,7 +6,6 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { MapPin, CheckCircle, Phone, DollarSign, Clock, Users } from "lucide-react";
-import Layout from "@/components/Layout";
 import { useToast } from "@/hooks/use-toast";
 import { openWhatsAppWithText, WHATSAPP } from "@/lib/whatsapp";
 import { getPendingSelection, clearPendingSelection, saveLead } from "@/lib/lead";
@@ -198,7 +197,7 @@ export default function Home() {
   };
 
   return (
-    <Layout>
+    <>
       {/* Hero Section */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
         {/* Background Image Slider */}
@@ -480,6 +479,6 @@ export default function Home() {
           </Card>
         </div>
       </section>
-    </Layout>
+    </>
   );
 }

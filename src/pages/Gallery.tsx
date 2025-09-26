@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import Layout from "@/components/Layout";
 import { Card } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 
@@ -141,7 +140,7 @@ export default function Gallery() {
     : galleryImages.filter(img => img.category === selectedCategory);
 
   return (
-    <Layout>
+    <>
       <div className="min-h-screen bg-background py-20">
         <div className="max-w-7xl mx-auto px-4">
           {/* Header */}
@@ -208,6 +207,6 @@ export default function Gallery() {
           </div>
         </div>
       </div>
-    </Layout>
+    </>
   );
 }
