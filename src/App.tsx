@@ -69,31 +69,41 @@ const App = () => {
     }
   }, []);
 
-  // Test: Only load Layout with simple content
+  // ULTRA MINIMAL TEST - No Layout, no dependencies
   return (
-    <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <Router>
-          <Toaster />
-          <Sonner />
-          <Suspense fallback={<PageLoader />}>
-            <Routes>
-              <Route path="/" element={
-                <Layout>
-                  <div className="min-h-screen flex items-center justify-center">
-                    <div className="text-center">
-                      <h1 className="text-4xl font-bold text-primary mb-4">🎉 Duniya Rides</h1>
-                      <p className="text-xl text-muted-foreground mb-8">Layout and Router working!</p>
-                      <p className="text-sm text-muted-foreground">If you see this, the issue is with the Home component.</p>
-                    </div>
-                  </div>
-                </Layout>
-              } />
-            </Routes>
-          </Suspense>
-        </Router>
-      </TooltipProvider>
-    </QueryClientProvider>
+    <div style={{
+      minHeight: '100vh',
+      background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+      color: 'white',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      fontFamily: 'Arial, sans-serif',
+      padding: '20px'
+    }}>
+      <div style={{ textAlign: 'center' }}>
+        <h1 style={{ fontSize: '3rem', marginBottom: '20px', textShadow: '2px 2px 4px rgba(0,0,0,0.3)' }}>
+          🚀 Duniya Rides
+        </h1>
+        <p style={{ fontSize: '1.5rem', marginBottom: '30px', opacity: 0.9 }}>
+          React is working perfectly!
+        </p>
+        <div style={{
+          background: 'rgba(255,255,255,0.1)',
+          padding: '20px',
+          borderRadius: '10px',
+          backdropFilter: 'blur(10px)'
+        }}>
+          <p style={{ marginBottom: '10px' }}>✅ React app loaded</p>
+          <p style={{ marginBottom: '10px' }}>✅ Component mounted</p>
+          <p style={{ marginBottom: '10px' }}>✅ JavaScript executing</p>
+          <p style={{ marginBottom: '10px' }}>✅ CSS working</p>
+          <p style={{ fontSize: '0.9rem', opacity: 0.8, marginTop: '20px' }}>
+            If you see this, React is 100% working!
+          </p>
+        </div>
+      </div>
+    </div>
   );
 };
 
