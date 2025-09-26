@@ -68,7 +68,7 @@ const App = () => {
     }
   }, []);
 
-  // Full app is now enabled!
+  // Test: Only load Layout with simple content
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
@@ -77,14 +77,17 @@ const App = () => {
           <Sonner />
           <Suspense fallback={<PageLoader />}>
             <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/plan-trip" element={<PlanMyTrip />} />
-              <Route path="/destinations" element={<Destinations />} />
-              <Route path="/destinations/:destinationId" element={<DestinationDetail />} />
-              <Route path="/testimonials" element={<Testimonials />} />
-              <Route path="/gallery" element={<Gallery />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="/about" element={<About />} />
+              <Route path="/" element={
+                <Layout>
+                  <div className="min-h-screen flex items-center justify-center">
+                    <div className="text-center">
+                      <h1 className="text-4xl font-bold text-primary mb-4">🎉 Duniya Rides</h1>
+                      <p className="text-xl text-muted-foreground mb-8">Layout and Router working!</p>
+                      <p className="text-sm text-muted-foreground">If you see this, the issue is with the Home component.</p>
+                    </div>
+                  </div>
+                </Layout>
+              } />
             </Routes>
           </Suspense>
         </Router>
