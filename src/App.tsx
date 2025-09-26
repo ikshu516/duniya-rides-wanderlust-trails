@@ -69,7 +69,7 @@ const App = () => {
     }
   }, []);
 
-  // STEP 1.5: Test Router WITHOUT Layout (isolate the issue)
+  // STEP 2: Add fixed Layout + Home component
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
@@ -78,48 +78,14 @@ const App = () => {
           <Sonner />
           <Suspense fallback={<PageLoader />}>
             <Routes>
-              <Route path="/" element={
-                <div style={{
-                  minHeight: '100vh',
-                  background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-                  color: 'white',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  fontFamily: 'Arial, sans-serif',
-                  padding: '20px'
-                }}>
-                  <div style={{ textAlign: 'center' }}>
-                    <h1 style={{ 
-                      fontSize: '3rem', 
-                      marginBottom: '20px', 
-                      textShadow: '2px 2px 4px rgba(0,0,0,0.3)'
-                    }}>
-                      🎯 Router Test
-                    </h1>
-                    <p style={{ 
-                      fontSize: '1.5rem', 
-                      marginBottom: '30px', 
-                      opacity: 0.9 
-                    }}>
-                      Router working without Layout!
-                    </p>
-                    <div style={{
-                      background: 'rgba(255,255,255,0.1)',
-                      padding: '20px',
-                      borderRadius: '10px',
-                      backdropFilter: 'blur(10px)'
-                    }}>
-                      <p style={{ marginBottom: '10px' }}>✅ Router working</p>
-                      <p style={{ marginBottom: '10px' }}>✅ Dependencies loaded</p>
-                      <p style={{ marginBottom: '10px' }}>✅ No Layout component</p>
-                      <p style={{ fontSize: '0.9rem', opacity: 0.8, marginTop: '20px' }}>
-                        Issue is with Layout component specifically
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              } />
+              <Route path="/" element={<Home />} />
+              <Route path="/plan-trip" element={<PlanMyTrip />} />
+              <Route path="/destinations" element={<Destinations />} />
+              <Route path="/destinations/:destinationId" element={<DestinationDetail />} />
+              <Route path="/testimonials" element={<Testimonials />} />
+              <Route path="/gallery" element={<Gallery />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/about" element={<About />} />
             </Routes>
           </Suspense>
         </Router>
