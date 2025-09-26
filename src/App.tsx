@@ -68,11 +68,7 @@ const App = () => {
     }
   }, []);
 
-  // Temporarily use debug component to test rendering
-  return <DebugApp />;
-
-  // Original full app (uncomment when debug is working)
-  /*
+  // Full app is now enabled!
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
@@ -95,7 +91,6 @@ const App = () => {
       </TooltipProvider>
     </QueryClientProvider>
   );
-  */
 };
 
 export default App;
