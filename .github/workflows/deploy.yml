@@ -29,11 +29,35 @@ jobs:
           node-version: "18"
           cache: "npm"
 
+      - name: Verify Node and npm versions
+        run: |
+          node --version
+          npm --version
+
       - name: Install dependencies
         run: npm ci
 
       - name: Build
         run: npm run build
+
+      - name: Verify build output
+        run: |
+          echo "Checking build output..."
+          ls -la dist/
+          if [ ! -f "dist/index.html" ]; then
+            echo "Error: index.html not found in dist/"
+            exit 1
+          fi
+          if [ ! -d "dist/assets" ]; then
+            echo "Error: assets directory not found in dist/"
+            exit 1
+          fi
+          if [ ! -f "dist/404.html" ]; then
+            echo "Warning: 404.html not found in dist/ - SPA routing may not work"
+          else
+            echo "✅ 404.html found for SPA routing"
+          fi
+          echo "✅ Build verification passed"
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
