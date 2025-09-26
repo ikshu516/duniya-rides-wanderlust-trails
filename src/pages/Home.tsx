@@ -198,8 +198,21 @@ export default function Home() {
 
   return (
     <>
+      {/* Debug Section - Remove after testing */}
+      <div style={{ 
+        background: '#ff0000', 
+        color: 'white', 
+        padding: '20px', 
+        textAlign: 'center',
+        marginTop: '80px',
+        fontSize: '24px',
+        fontWeight: 'bold'
+      }}>
+        🔧 DEBUG: Home Page Content Loading Test
+      </div>
+      
       {/* Hero Section */}
-      <section className="relative h-screen flex items-center justify-center overflow-hidden">
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
         {/* Background Image Slider */}
         <div className="absolute inset-0">
           {heroImages.map((image, index) => (
