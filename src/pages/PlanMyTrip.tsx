@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -17,6 +17,44 @@ export default function PlanMyTrip() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const location = useLocation();
+  
+  // State for automatic date calculation
+  const [travelFrom, setTravelFrom] = useState("");
+  const [travelTo, setTravelTo] = useState("");
+  const [numberOfDays, setNumberOfDays] = useState("");
+
+  // Function to calculate days between dates
+  const calculateDays = (startDate: string, endDate: string): number => {
+    if (!startDate || !endDate) return 0;
+    
+    const start = new Date(startDate);
+    const end = new Date(endDate);
+    
+    // Calculate the difference in time
+    const timeDifference = end.getTime() - start.getTime();
+    
+    // Convert to days (add 1 to include both start and end dates)
+    const dayDifference = Math.ceil(timeDifference / (1000 * 3600 * 24)) + 1;
+    
+    return dayDifference > 0 ? dayDifference : 0;
+  };
+
+  // Auto-calculate days when dates change
+  const handleDateChange = (type: 'from' | 'to', value: string) => {
+    if (type === 'from') {
+      setTravelFrom(value);
+      const days = calculateDays(value, travelTo);
+      if (days > 0) {
+        setNumberOfDays(days.toString());
+      }
+    } else {
+      setTravelTo(value);
+      const days = calculateDays(travelFrom, value);
+      if (days > 0) {
+        setNumberOfDays(days.toString());
+      }
+    }
+  };
 
   // Derive selected package details from router state if present
   const selected = useMemo(() => {
@@ -90,6 +128,13 @@ export default function PlanMyTrip() {
       parsedDays: days,
     };
   }, [location.state]);
+
+  // Initialize numberOfDays with selected package value
+  useEffect(() => {
+    if (selected.parsedDays && !numberOfDays) {
+      setNumberOfDays(selected.parsedDays.toString());
+    }
+  }, [selected.parsedDays, numberOfDays]);
 
   const sendWhatsAppMessage = (formData: FormData) => {
     const data = {
@@ -280,11 +325,27 @@ export default function PlanMyTrip() {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div className="space-y-2">
                         <Label htmlFor="travelFrom">Travel Date From *</Label>
-                        <Input id="travelFrom" name="travelFrom" type="date" required />
+                        <Input 
+                          id="travelFrom" 
+                          name="travelFrom" 
+                          type="date" 
+                          required 
+                          value={travelFrom}
+                          onChange={(e) => handleDateChange('from', e.target.value)}
+                          min={new Date().toISOString().split('T')[0]} // Prevent past dates
+                        />
                       </div>
                       <div className="space-y-2">
                         <Label htmlFor="travelTo">Travel Date To *</Label>
-                        <Input id="travelTo" name="travelTo" type="date" required />
+                        <Input 
+                          id="travelTo" 
+                          name="travelTo" 
+                          type="date" 
+                          required 
+                          value={travelTo}
+                          onChange={(e) => handleDateChange('to', e.target.value)}
+                          min={travelFrom || new Date().toISOString().split('T')[0]} // Must be after start date
+                        />
                       </div>
                     </div>
 
@@ -305,8 +366,30 @@ export default function PlanMyTrip() {
                         </Select>
                       </div>
                       <div className="space-y-2">
-                        <Label htmlFor="numberOfDays">Number of Days</Label>
-                        <Input id="numberOfDays" name="numberOfDays" type="number" placeholder="7" min="1" max="30" defaultValue={selected.parsedDays || ''} />
+                        <Label htmlFor="numberOfDays">
+                          Number of Days 
+                          {numberOfDays && (
+                            <span className="text-primary font-semibold ml-2">
+                              ✨ Auto-calculated: {numberOfDays} days
+                            </span>
+                          )}
+                        </Label>
+                        <Input 
+                          id="numberOfDays" 
+                          name="numberOfDays" 
+                          type="number" 
+                          placeholder="Select dates above for auto-calculation" 
+                          min="1" 
+                          max="365" 
+                          value={numberOfDays}
+                          onChange={(e) => setNumberOfDays(e.target.value)}
+                          className={numberOfDays ? "border-primary bg-primary/5" : ""}
+                        />
+                        {numberOfDays && (
+                          <p className="text-sm text-muted-foreground">
+                            💡 Calculated from your travel dates. You can adjust if needed.
+                          </p>
+                        )}
                       </div>
                     </div>
 
