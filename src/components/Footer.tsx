@@ -69,7 +69,7 @@ export default function Footer() {
               </div>
               <div className="flex items-start space-x-2 text-sm">
                 <MapPin className="h-4 w-4 text-accent mt-0.5" />
-                <span>123 Travel Street, New Delhi, India 110001</span>
+                <span>Shastri Nagar, Ghaziabad, Uttar Pradesh -201002</span>
               </div>
               <div className="pt-2">
                 <Link 

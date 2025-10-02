@@ -26,22 +26,22 @@ const stats = [
 
 const team = [
   {
-    name: "Rajesh Kumar",
+    name: "Vandana Choudhary",
     role: "Founder & CEO",
     image: "https://picsum.photos/400/400?random=101",
-    description: "With 20+ years in tourism, Rajesh founded Duniya Rides to make India accessible to every traveler."
+    description: "With a vision to make travel simpler, Vandana founded Duniya Rides in 2025 to make India accessible to every traveler."
   },
   {
     name: "Priya Sharma",
     role: "Head of Operations",
     image: "https://picsum.photos/400/400?random=102",
-    description: "Priya ensures every trip runs smoothly with her attention to detail and customer-first approach."
+    description: "Priya ensures every trip is seamless with her attention to detail and strong focus on customer-first service. Her leadership keeps operations smooth and efficient."
   },
   {
     name: "Amit Singh",
     role: "Travel Expert",
     image: "https://picsum.photos/400/400?random=103",
-    description: "Amit's deep knowledge of India's hidden gems helps create unforgettable travel experiences."
+    description: "Amit’s deep knowledge of India’s hidden gems helps craft unique itineraries, ensuring travelers enjoy unforgettable and authentic experiences."
   }
 ];
 
@@ -111,20 +111,13 @@ export default function About() {
                 </h2>
                 <div className="space-y-4 text-muted-foreground">
                   <p>
-                    Founded in 2009, Duniya Rides began as a small travel agency with a big dream - 
-                    to share the magic of India with the world. What started as a passion project 
-                    has grown into one of India's most trusted travel companies.
+                    Founded in 2025, Duniya Rides began as a small travel agency with a big dream—to share the magic of India with the world. What started as a passion project has quickly grown into one of India’s most promising travel companies.
                   </p>
                   <p>
-                    Our founder, Rajesh Kumar, grew up traveling across India with his family, 
-                    discovering hidden gems and forming connections with local communities. 
-                    This early exposure to India's diversity sparked his vision to create 
-                    meaningful travel experiences that go beyond typical tourist attractions.
+                    Our founder and co-owner, Vandana Choudhary, grew up traveling across India, discovering hidden gems and building connections with local communities. This early exposure to India’s diversity sparked her vision to create meaningful travel experiences that go beyond typical tourist attractions.
                   </p>
                   <p>
-                    Today, we've helped over 50,000 travelers discover the beauty of India, 
-                    from the snow-capped Himalayas to the tropical beaches of Kerala. 
-                    Our team of local experts ensures every journey is authentic, safe, and unforgettable.
+                    In just a short time, we’ve already helped hundreds of travelers explore the beauty of India—from the snow-capped Himalayas to the tropical beaches of Kerala. Our team of local experts ensures every journey is authentic, safe, and unforgettable.
                   </p>
                 </div>
               </div>

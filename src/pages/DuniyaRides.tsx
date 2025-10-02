@@ -87,7 +87,7 @@ const testimonials = [
     image: "photo-1494790108755-2616c668c9ad"
   },
   {
-    name: "Rajesh Kumar",
+    name: "Vandana Choudhary",
     location: "Delhi",
     review: "Excellent service and budget-friendly packages. Our Goa vacation was unforgettable thanks to their planning.",
     rating: 5,
