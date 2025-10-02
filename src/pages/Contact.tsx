@@ -147,7 +147,7 @@ export default function Contact() {
               <Input
                 type="text"
                 placeholder="Search for destinations in India..."
-                className="pl-10 pr-10 py-6 text-base border-0 shadow-lg"
+                className="pl-10 pr-10 py-6 text-base border-0 shadow-lg text-foreground"
                 value={searchQuery}
                 onChange={handleSearchChange}
                 onFocus={() => setShowDropdown(true)}
@@ -236,8 +236,8 @@ export default function Contact() {
                 </div>
                 <div className="space-y-1">
                   <p className="text-foreground">info@duniyarides.com</p>
+                  <p className="text-foreground">admin@duniyarides.com</p>
                   <p className="text-foreground">sales@duniyarides.com</p>
-                  <p className="text-foreground">support@duniyarides.com</p>
                 </div>
               </CardContent>
             </Card>

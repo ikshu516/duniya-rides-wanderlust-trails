@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useEffect } from "react";
 import Layout from "@/components/Layout";
+import ScrollToTop from "@/components/ScrollToTop";
 
 // Direct imports for testing - no lazy loading
 import Home from "./pages/Home";
@@ -41,6 +42,7 @@ const App = () => {
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <Router basename="/duniya-rides-wanderlust-trails">
+          <ScrollToTop />
           <Toaster />
           <Sonner />
           <Layout>

@@ -65,7 +65,7 @@ export default function Footer() {
               </div>
               <div className="flex items-center space-x-2 text-sm">
                 <Mail className="h-4 w-4 text-accent" />
-                <span>info@duniyarides.com</span>
+                <span>admin@duniyarides.com</span>
               </div>
               <div className="flex items-start space-x-2 text-sm">
                 <MapPin className="h-4 w-4 text-accent mt-0.5" />
