@@ -9,14 +9,12 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Company Info */}
           <div className="space-y-4">
-            <div className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-gradient-primary rounded-lg flex items-center justify-center">
-                <span className="text-sm font-bold text-white">DR</span>
-              </div>
-              <div>
-                <h3 className="font-bold text-white">Duniya Rides</h3>
-                <p className="text-xs text-secondary-foreground/80">Explore Incredible India</p>
-              </div>
+            <div className="mb-2">
+              <img 
+                src="/duniya-rides-wanderlust-trails/images/duniya-rides-logo-icon.png" 
+                alt="Duniya Rides" 
+                className="h-20 w-auto"
+              />
             </div>
             <p className="text-sm text-secondary-foreground/80">
               Your trusted partner for unforgettable journeys across India. From the majestic Himalayas to the serene backwaters of Kerala, we make your travel dreams come true.
