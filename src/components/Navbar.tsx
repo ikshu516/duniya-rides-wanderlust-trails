@@ -42,11 +42,12 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex justify-between items-center py-4">
           {/* Logo */}
-          <Link to="/" className="flex items-center">
+          <Link to="/" className="flex items-center py-1">
             <img 
-              src="/duniya-rides-wanderlust-trails/images/duniya-rides-logo-horizontal.png" 
+              src={`${import.meta.env.BASE_URL}images/duniya-rides-logo-horizontal.png`}
               alt="Duniya Rides - Ride With Us, Explore With Ease" 
-              className="h-12 w-auto"
+              className="h-10 md:h-12 w-auto"
+              style={{ maxWidth: '280px' }}
             />
           </Link>
 

@@ -11,9 +11,9 @@ export default function Footer() {
           <div className="space-y-4">
             <div className="mb-2">
               <img 
-                src="/duniya-rides-wanderlust-trails/images/duniya-rides-logo-icon.png" 
+                src={`${import.meta.env.BASE_URL}images/duniya-rides-logo-icon.png`}
                 alt="Duniya Rides" 
-                className="h-20 w-auto"
+                className="h-20 w-auto object-contain"
               />
             </div>
             <p className="text-sm text-secondary-foreground/80">
