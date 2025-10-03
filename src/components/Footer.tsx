@@ -21,6 +21,11 @@ export default function Footer() {
             <p className="text-sm text-secondary-foreground/80">
               Your trusted partner for unforgettable journeys across India. From the majestic Himalayas to the serene backwaters of Kerala, we make your travel dreams come true.
             </p>
+            <div className="pt-2">
+              <p className="text-xs text-secondary-foreground/70 font-mono">
+                GST: 09AGOPV6110A1ZF
+              </p>
+            </div>
             <div className="flex space-x-4">
               <Facebook className="h-5 w-5 hover:text-accent cursor-pointer transition-colors" />
               <Instagram className="h-5 w-5 hover:text-accent cursor-pointer transition-colors" />

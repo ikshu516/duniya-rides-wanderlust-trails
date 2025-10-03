@@ -15,7 +15,7 @@ const testimonials = [
     image: "photo-1569913486515-b74bf7751574",
     review: "Our trip to Kerala and Goa was absolutely magical! The houseboat experience in Alleppey was like a dream, and the beaches in Goa were pristine. Duniya Rides took care of every detail - from the comfortable accommodations to the knowledgeable local guides. We felt safe and well-cared for throughout our journey.",
     highlight: "The houseboat cruise through Kerala's backwaters was the highlight of our entire India trip!",
-    date: "December 2023"
+    date: "September 2025"
   },
   {
     id: 2,
@@ -27,7 +27,7 @@ const testimonials = [
     image: "photo-1494790108755-2616c55b1389",
     review: "As a solo female traveler, I was initially nervous about visiting India. But Duniya Rides made me feel completely safe and comfortable. The Golden Triangle tour was perfectly organized - the Taj Mahal at sunrise was breathtaking, and exploring the palaces of Jaipur felt like stepping into a fairy tale.",
     highlight: "The sunrise visit to Taj Mahal was absolutely breathtaking - a moment I'll treasure forever.",
-    date: "November 2023"
+    date: "August 2025"
   },
   {
     id: 3,
@@ -39,7 +39,7 @@ const testimonials = [
     image: "photo-1511895426328-dc8714191300",
     review: "Traveling with our teenage kids, we needed a tour that would keep everyone engaged. Duniya Rides delivered beyond our expectations! The camel safari in Jaisalmer, staying in heritage hotels, and experiencing Rajasthani culture was incredible. Our kids are still talking about the puppet shows and folk dances.",
     highlight: "The camel safari in the Thar Desert and staying under the stars was an unforgettable family adventure.",
-    date: "October 2023"
+    date: "July 2025"
   },
   {
     id: 4,
@@ -51,7 +51,7 @@ const testimonials = [
     image: "photo-1492562080023-ab3db95bfbce",
     review: "Kashmir truly is paradise on earth! The Dal Lake houseboat experience, the beautiful Mughal gardens, and the snow-capped mountains created the perfect romantic getaway for our anniversary. Every meal was delicious, and our guide Raj was incredibly knowledgeable about the region's history and culture.",
     highlight: "Staying in a traditional houseboat on Dal Lake with mountain views was pure romance.",
-    date: "September 2023"
+    date: "June 2025"
   },
   {
     id: 5,
@@ -63,7 +63,7 @@ const testimonials = [
     image: "photo-1488426862026-3ee34a7d66df",
     review: "This spiritual journey transformed my perspective on life. The yoga sessions by the Ganges in Rishikesh, the evening aarti in Varanasi, and the meditation retreats provided exactly the peace and clarity I was seeking. The arrangements were thoughtful and respectful of the sacred nature of these places.",
     highlight: "Witnessing the Ganga Aarti ceremony in Varanasi was a deeply moving spiritual experience.",
-    date: "August 2023"
+    date: "May 2025"
   },
   {
     id: 6,
@@ -75,7 +75,7 @@ const testimonials = [
     image: "photo-1507003211169-0a1dd7228f2d",
     review: "The Himalayan trek exceeded all our expectations! The organization was flawless - from the experienced mountain guides to the quality camping equipment. The views of the snow-capped peaks were absolutely stunning, and the local hospitality in the mountain villages was heartwarming. Highly recommended for adventure enthusiasts!",
     highlight: "Reaching the summit and seeing the Himalayan peaks at sunrise was absolutely magnificent.",
-    date: "July 2023"
+    date: "April 2025"
   }
 ];
 
