@@ -38,7 +38,7 @@ const App = () => {
   }, []);
 
   // ORIGINAL WEBSITE RESTORED with fixed Layout
-  return (
+  return ( 
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <Router basename="/duniya-rides-wanderlust-trails">
