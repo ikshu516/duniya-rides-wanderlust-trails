@@ -21,11 +21,12 @@ export default function PremiumNavbar() {
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2">
-            <div className="text-2xl font-bold text-primary">Duniya Rides</div>
-            <div className="text-sm text-muted-foreground hidden sm:block">
-              India's Most Trusted Trip Planner
-            </div>
+          <Link to="/" className="flex items-center">
+            <img 
+              src={`${import.meta.env.BASE_URL}images/duniya-rides-logo-horizontal.png`}
+              alt="Duniya Rides - Ride With Us, Explore With Ease" 
+              className="h-10 w-auto"
+            />
           </Link>
 
           {/* Desktop Navigation */}

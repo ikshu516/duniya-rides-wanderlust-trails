@@ -5,7 +5,7 @@ import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
-  base: process.env.NODE_ENV === 'production' ? '/duniya-rides-wanderlust-trails/' : '/',
+  base: process.env.VITE_DEPLOY_TARGET === 'github' ? '/duniya-rides-wanderlust-trails/' : '/',
   server: {
     host: "::",
     port: 8080,

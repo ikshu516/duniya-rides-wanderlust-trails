@@ -40,14 +40,16 @@ export default function Navbar() {
 
       {/* Main navigation */}
       <div className="max-w-7xl mx-auto px-4">
-        <div className="flex justify-between items-center py-4">
+        <div className="flex justify-between items-center py-3">
           {/* Logo */}
-          <Link to="/" className="flex items-center py-1">
+          <Link to="/" className="flex items-center">
             <img 
               src={`${import.meta.env.BASE_URL}images/duniya-rides-logo-horizontal.png`}
               alt="Duniya Rides - Ride With Us, Explore With Ease" 
-              className="h-10 md:h-12 w-auto"
-              style={{ maxWidth: '280px' }}
+              className="h-12 w-auto"
+              onError={(e) => {
+                console.error('Logo failed to load from:', e.currentTarget.src);
+              }}
             />
           </Link>
 
